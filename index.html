@@ -150,7 +150,7 @@
     🛂 حجز موعد إصدار الجواز الإلكتروني
   </a>
 </div>
-  <div class="card">
+<div class="card">
   <h2>👨‍👩‍👧 الرعاية الاجتماعية</h2>
   <p>خدمات الرعاية الاجتماعية والبيان السنوي ومتابعة حالة المستفيد.</p>
 
@@ -171,35 +171,127 @@
   </a>
 </div>
 
-  <div class="card">
-  <div class="card">
-    <h2>🧑‍💼 خدمات إضافية للرعاية الاجتماعية</h2>
-    <p>الوصول السريع إلى خدمات ومعلومات المستفيدين.</p>
+<!-- تذكير البيان السنوي -->
+<div class="card">
+  <h2>🔔 تذكير البيان السنوي</h2>
+  <p>أدخل تاريخ انتهاء البيان السنوي ليقوم التطبيق بتذكيرك عند اقتراب الموعد.</p>
 
-    <a href="https://spa.gov.iq/"
-       target="_blank"
-       style="display:block;text-align:center;text-decoration:none;
-       background:#16a34a;color:white;padding:13px;
-       margin-top:10px;border-radius:10px;font-size:16px;">
-      🏛️ موقع هيئة الحماية الاجتماعية
-    </a>
+  <label for="annualDate">📅 تاريخ انتهاء البيان:</label>
 
-    <a href="https://spa.gov.iq/umbrella/search.aspx"
-       target="_blank"
-       style="display:block;text-align:center;text-decoration:none;
-       background:#2563eb;color:white;padding:13px;
-       margin-top:10px;border-radius:10px;font-size:16px;">
-      🔍 الاستعلام عن حالة المستفيد
-    </a>
+  <input type="date"
+         id="annualDate"
+         style="width:100%;box-sizing:border-box;padding:12px;
+         margin-top:8px;border:1px solid #ccc;border-radius:10px;
+         font-size:16px;">
 
-    <a href="https://spa.gov.iq/umbrella/search-annual.aspx"
-       target="_blank"
-       style="display:block;text-align:center;text-decoration:none;
-       background:#7c3aed;color:white;padding:13px;
-       margin-top:10px;border-radius:10px;font-size:16px;">
-      📋 متابعة البيان السنوي
-    </a>
+  <button onclick="saveAnnualDate()"
+          style="width:100%;border:0;background:#16a34a;
+          color:white;padding:13px;margin-top:10px;
+          border-radius:10px;font-size:16px;">
+    💾 حفظ موعد التذكير
+  </button>
+
+  <div id="annualReminder"
+       style="margin-top:12px;padding:12px;border-radius:10px;
+       background:#f1f5f9;text-align:center;">
+    لم يتم تحديد موعد انتهاء البيان بعد.
   </div>
+</div>
+
+<!-- خدمات إضافية -->
+<div class="card">
+  <h2>🧑‍💼 خدمات إضافية للرعاية الاجتماعية</h2>
+  <p>الوصول السريع إلى خدمات ومعلومات المستفيدين.</p>
+
+  <a href="https://spa.gov.iq/"
+     target="_blank"
+     style="display:block;text-align:center;text-decoration:none;
+     background:#16a34a;color:white;padding:13px;
+     margin-top:10px;border-radius:10px;font-size:16px;">
+    🏛️ موقع هيئة الحماية الاجتماعية
+  </a>
+
+  <a href="https://spa.gov.iq/umbrella/search.aspx"
+     target="_blank"
+     style="display:block;text-align:center;text-decoration:none;
+     background:#2563eb;color:white;padding:13px;
+     margin-top:10px;border-radius:10px;font-size:16px;">
+    🔍 الاستعلام عن حالة المستفيد
+  </a>
+
+  <a href="https://spa.gov.iq/umbrella/search-annual.aspx"
+     target="_blank"
+     style="display:block;text-align:center;text-decoration:none;
+     background:#7c3aed;color:white;padding:13px;
+     margin-top:10px;border-radius:10px;font-size:16px;">
+    📋 متابعة البيان السنوي
+  </a>
+</div>
+
+<script>
+function saveAnnualDate() {
+  const date = document.getElementById("annualDate").value;
+  const reminder = document.getElementById("annualReminder");
+
+  if (!date) {
+    reminder.innerHTML = "⚠️ يرجى اختيار تاريخ انتهاء البيان.";
+    return;
+  }
+
+  localStorage.setItem("annualStatementDate", date);
+  checkAnnualReminder();
+}
+
+function checkAnnualReminder() {
+  const savedDate = localStorage.getItem("annualStatementDate");
+  const reminder = document.getElementById("annualReminder");
+
+  if (!savedDate) return;
+
+  document.getElementById("annualDate").value = savedDate;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const expiry = new Date(savedDate);
+  expiry.setHours(0, 0, 0, 0);
+
+  const difference = Math.ceil(
+    (expiry - today) / (1000 * 60 * 60 * 24)
+  );
+
+  if (difference < 0) {
+    reminder.innerHTML =
+      "🚨 <strong>انتهى البيان السنوي!</strong><br>يرجى الدخول إلى خدمة البيان السنوي وتحديثه.";
+    reminder.style.background = "#fee2e2";
+  } 
+  else if (difference === 0) {
+    reminder.innerHTML =
+      "🚨 <strong>ينتهي البيان السنوي اليوم!</strong>";
+    reminder.style.background = "#fee2e2";
+  } 
+  else if (difference <= 7) {
+    reminder.innerHTML =
+      "⚠️ <strong>تنبيه:</strong> متبقي " + difference +
+      " يومًا على انتهاء البيان السنوي.";
+    reminder.style.background = "#fef3c7";
+  } 
+  else if (difference <= 30) {
+    reminder.innerHTML =
+      "🔔 <strong>تنبيه:</strong> متبقي " + difference +
+      " يومًا على انتهاء البيان السنوي.";
+    reminder.style.background = "#fef3c7";
+  } 
+  else {
+    reminder.innerHTML =
+      "✅ تم حفظ الموعد. متبقي " + difference +
+      " يومًا على انتهاء البيان السنوي.";
+    reminder.style.background = "#dcfce7";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", checkAnnualReminder);
+</script>
   <h2>💰 المتقاعدون</h2>
   <p>خدمات المتقاعدين الرسمية وإثبات الحياة والاستعلام عن الراتب التقاعدي.</p>
 
