@@ -3,101 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#247b73">
   <title>وين أراجع؟</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f8f6;
-      color: #263b37;
+      background: #f4f7fb;
+      color: #222;
     }
 
     header {
-      background: white;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .logo {
-      background: #247b73;
+      background: #075985;
       color: white;
-      padding: 12px;
-      border-radius: 15px;
-      font-size: 25px;
+      padding: 25px 15px;
+      text-align: center;
     }
 
-    h1 {
-      margin: 0;
-      color: #247b73;
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
     }
 
     header p {
-      margin: 4px 0 0;
-      color: #777;
+      margin: 0;
+      font-size: 16px;
     }
 
-    main {
-      max-width: 650px;
-      margin: 25px auto;
-      padding: 15px;
+    .container {
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
     }
 
     .card {
       background: white;
-      padding: 25px;
-      border-radius: 25px;
-      box-shadow: 0 5px 20px #00000012;
+      border-radius: 15px;
+      padding: 18px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     }
 
-    h2 {
+    .card h2 {
       margin-top: 0;
-    }
-
-    label {
-      display: block;
-      margin: 20px 0 8px;
-      font-weight: bold;
-    }
-
-    select {
-      width: 100%;
-      padding: 16px;
-      border: 1px solid #ddd;
-      border-radius: 18px;
-      font-size: 17px;
-      background: white;
+      color: #075985;
     }
 
     button {
       width: 100%;
-      margin-top: 25px;
-      padding: 17px;
-      border: 0;
-      border-radius: 18px;
-      background: #247b73;
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      margin-top: 10px;
+      background: #0ea5e9;
       color: white;
-      font-size: 19px;
-      font-weight: bold;
-    }
-
-    #result {
-      margin-top: 20px;
-      padding: 20px;
-      background: white;
-      border-radius: 20px;
-      display: none;
+      font-size: 16px;
+      cursor: pointer;
     }
 
     .notice {
-      margin-top: 20px;
+      background: #fff7ed;
+      border-right: 5px solid #f97316;
+    }
+
+    footer {
+      text-align: center;
       padding: 20px;
-      background: #fff8dc;
-      border-radius: 20px;
+      color: #666;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -105,125 +77,52 @@
 <body>
 
 <header>
-  <div class="logo">📍</div>
-  <div>
-    <h1>وين أراجع؟</h1>
-    <p>دليل المواطن العراقي</p>
-  </div>
+  <h1>📍 وين أراجع؟</h1>
+  <p>دليلك للوصول إلى الخدمات الحكومية</p>
 </header>
 
-<main>
+<div class="container">
 
   <div class="card">
-    <h2>ابدأ من هنا</h2>
-    <p>اختر المحافظة ونوع المعاملة لمعرفة جهة المراجعة.</p>
-
-    <label>المحافظة</label>
-
-    <select id="governorate">
-      <option value="">اختر المحافظة</option>
-      <option>بغداد</option>
-      <option>الأنبار</option>
-      <option>البصرة</option>
-      <option>نينوى</option>
-      <option>كربلاء</option>
-      <option>النجف</option>
-      <option>بابل</option>
-      <option>ديالى</option>
-      <option>صلاح الدين</option>
-      <option>واسط</option>
-      <option>ميسان</option>
-      <option>ذي قار</option>
-      <option>المثنى</option>
-      <option>القادسية</option>
-      <option>كركوك</option>
-      <option>أربيل</option>
-      <option>السليمانية</option>
-      <option>دهوك</option>
-    </select>
-
-    <label>نوع المعاملة</label>
-
-    <select id="service">
-      <option value="">اختر المعاملة</option>
-      <option value="traffic">المرور</option>
-      <option value="national">البطاقة الوطنية</option>
-      <option value="social">الرعاية الاجتماعية</option>
-      <option value="unemployed">العاطلين عن العمل</option>
-      <option value="retired">المتقاعدين</option>
-      <option value="civil">الأحوال المدنية</option>
-    </select>
-
-    <button onclick="searchService()">وين أراجع؟ 🔍</button>
+    <h2>🪪 البطاقة الوطنية</h2>
+    <p>معلومات المراجعة وإصدار البطاقة الوطنية.</p>
+    <button>معلومات المراجعة</button>
   </div>
 
-  <div id="result"></div>
-
-  <div class="notice">
-    <h3>🔔 آخر التنبيهات الحكومية</h3>
-    <p>سيتم إضافة التنبيهات والخدمات الحكومية الموثقة إلى التطبيق.</p>
+  <div class="card">
+    <h2>🚗 الغرامات المرورية</h2>
+    <p>الوصول إلى خدمة البحث عن الغرامات المرورية.</p>
+    <button>بحث عن الغرامات</button>
   </div>
 
-</main>
+  <div class="card">
+    <h2>👨‍👩‍👧 الرعاية الاجتماعية</h2>
+    <p>خدمات ومعلومات الرعاية الاجتماعية.</p>
+    <button>خدمات الرعاية الاجتماعية</button>
+  </div>
 
-<script>
-function searchService() {
+  <div class="card">
+    <h2>💰 المتقاعدون</h2>
+    <p>معلومات وخدمات المتقاعدين والتحديثات المهمة.</p>
+    <button>خدمات المتقاعدين</button>
+  </div>
 
-  const governorate =
-    document.getElementById("governorate").value;
+  <div class="card">
+    <h2>👷 العاطلون عن العمل</h2>
+    <p>خدمات ومعلومات التسجيل والتحديثات الخاصة بالعاطلين عن العمل.</p>
+    <button>خدمات العاطلين</button>
+  </div>
 
-  const service =
-    document.getElementById("service").value;
+  <div class="card notice">
+    <h2>🔔 آخر التنبيهات الحكومية</h2>
+    <p>سيتم عرض التنبيهات والخدمات الحكومية الموثقة هنا.</p>
+  </div>
 
-  const result =
-    document.getElementById("result");
+</div>
 
-  if (!governorate || !service) {
-    result.style.display = "block";
-    result.innerHTML =
-      "<h3>⚠️ أكمل الاختيار</h3>" +
-      "<p>اختر المحافظة ونوع المعاملة أولاً.</p>";
-    return;
-  }
+<footer>
+  © 2026 وين أراجع؟ — دليل الخدمات الحكومية
+</footer>
 
-  let title = "";
-
-  if (service === "traffic")
-    title = "خدمات المرور";
-
-  if (service === "national")
-    title = "البطاقة الوطنية";
-
-  if (service === "social")
-    title = "الرعاية الاجتماعية";
-
-  if (service === "unemployed")
-    title = "خدمات العاطلين عن العمل";
-
-  if (service === "retired")
-    title = "خدمات المتقاعدين";
-
-  if (service === "civil")
-    title = "الأحوال المدنية";
-
-  result.style.display = "block";
-
-  result.innerHTML =
-    "<h2>📍 " + title + "</h2>" +
-    "<p><strong>المحافظة:</strong> " +
-    governorate + "</p>" +
-    "<p>سيتم عرض جهة المراجعة والعنوان والخدمات الإلكترونية هنا.</p>";
-}
-</script>
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js");
-  });
-}
-</script>
-
-</body>
-</html>
 </body>
 </html>
