@@ -194,6 +194,21 @@
 <footer>
   © 2026 وين أراجع؟ — دليل الخدمات الحكومية
 </footer>
+<script>
+function searchServices() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
 
+  cards.forEach(function(card) {
+    const text = card.innerText.toLowerCase();
+
+    if (text.includes(input)) {
+      card.style.display = "";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+</script>
 </body>
 </html>
