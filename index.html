@@ -289,7 +289,83 @@ function checkAnnualReminder() {
     reminder.style.background = "#dcfce7";
   }
 }
+<!-- إشعارات البيان السنوي -->
+<div class="card">
+  <h2>🔔 إشعارات البيان السنوي</h2>
+  <p>فعّل الإشعارات ليصلك تنبيه عند اقتراب انتهاء البيان السنوي.</p>
 
+  <button onclick="enableAnnualNotifications()"
+          style="width:100%;border:0;background:#f59e0b;
+          color:white;padding:13px;margin-top:10px;
+          border-radius:10px;font-size:16px;">
+    🔔 تفعيل إشعارات البيان السنوي
+  </button>
+
+  <button onclick="testAnnualNotification()"
+          style="width:100%;border:0;background:#0ea5e9;
+          color:white;padding:13px;margin-top:10px;
+          border-radius:10px;font-size:16px;">
+    🧪 اختبار الإشعار الآن
+  </button>
+
+  <div id="notificationStatus"
+       style="margin-top:12px;padding:10px;border-radius:10px;
+       background:#f1f5f9;text-align:center;">
+    الإشعارات غير مفعلة بعد.
+  </div>
+</div>
+
+<script>
+async function enableAnnualNotifications() {
+  const status = document.getElementById("notificationStatus");
+
+  if (!("Notification" in window)) {
+    status.innerHTML = "❌ هذا المتصفح لا يدعم الإشعارات.";
+    return;
+  }
+
+  const permission = await Notification.requestPermission();
+
+  if (permission === "granted") {
+    status.innerHTML = "✅ تم تفعيل الإشعارات على هذا الجهاز.";
+  } else {
+    status.innerHTML = "⚠️ لم يتم السماح بالإشعارات.";
+  }
+}
+
+async function testAnnualNotification() {
+  const status = document.getElementById("notificationStatus");
+
+  if (!("Notification" in window)) {
+    status.innerHTML = "❌ المتصفح لا يدعم الإشعارات.";
+    return;
+  }
+
+  if (Notification.permission !== "granted") {
+    status.innerHTML =
+      "⚠️ اضغط أولًا على «تفعيل إشعارات البيان السنوي».";
+    return;
+  }
+
+  try {
+    const registration = await navigator.serviceWorker.ready;
+
+    await registration.showNotification(
+      "🔔 وين أراجع؟",
+      {
+        body: "هذا إشعار تجريبي للبيان السنوي. الإشعارات تعمل بنجاح.",
+        icon: "./icon-192.png",
+        badge: "./icon-192.png"
+      }
+    );
+
+    status.innerHTML = "✅ تم إرسال الإشعار التجريبي.";
+  } catch (error) {
+    status.innerHTML = "❌ تعذر إرسال الإشعار التجريبي.";
+    console.error(error);
+  }
+}
+</script>
 document.addEventListener("DOMContentLoaded", checkAnnualReminder);
 </script>
   <h2>💰 المتقاعدون</h2>
