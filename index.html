@@ -399,7 +399,15 @@ function searchServices() {
   });
   }
 </script>
-  
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("تم تشغيل نظام الإشعارات"))
+      .catch(error => console.error("فشل تشغيل الإشعارات:", error));
+  });
+}
+  </script>
 
 </body>
 </html>
