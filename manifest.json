@@ -6,11 +6,14 @@
   "display": "standalone",
   "background_color": "#075985",
   "theme_color": "#075985",
+  "lang": "ar",
+  "dir": "rtl",
   "icons": [
     {
       "src": "https://cdn-icons-png.flaticon.com/512/854/854878.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
