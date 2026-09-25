@@ -2,171 +2,55 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>وين أراجع؟ V7 - قسم المتقاعدين</title>
+<title>وين أراجع؟ V7 - جاهز للسوق</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#075985">
+<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/854/854878.png">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@800;700;500&display=swap" rel="stylesheet">
 <style>
 :root{--blue:#075985;--bg:#eef6fb;--card:#fff;--border:#e2e8f0;--text:#0f172a;--muted:#64748b}
-[data-theme="dark"]{--bg:#050a15;--card:#101a2e;--border:#1e2c4a;--text:#e2e8f0;--muted:#94a3b8}
 *{box-sizing:border-box;font-family:'Tajawal',sans-serif}body{margin:0;background:var(--bg);color:var(--text);padding-bottom:90px}
 header{background:linear-gradient(0deg,rgba(7,89,133,.92),rgba(3,47,74,.88)),url('https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1200') center/cover;color:#fff;padding:18px 20px 90px;text-align:center}
-.top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.theme-btn{width:42px;height:42px;border-radius:12px;border:1px solid #fff3;background:#fff2;color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center}
 .page{max-width:820px;margin:-70px auto 0;padding:0 14px;position:relative;z-index:2;display:none}.page.active{display:block}
 .search-wrap{background:var(--card);border-radius:20px;padding:14px;box-shadow:0 10px 28px #0001;border:1px solid var(--border)}
 #searchInput{width:100%;padding:14px 16px;border:2px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text)}
-.card{background:var(--card);border-radius:20px;padding:0;margin-bottom:14px;border:1px solid var(--border);overflow:hidden;box-shadow:0 8px 24px #00000008}
-.card-bg{height:90px;background-size:cover;background-position:center;position:relative}.card-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,var(--card) 5%,transparent)}
-.card-content{padding:14px 16px}.card h2{margin:0 0 6px;font-size:16px;color:var(--blue);display:flex;gap:7px;align-items:center}.card p{color:var(--muted);line-height:1.7;margin:6px 0 10px;font-size:13px}
-.service-btn{display:flex;justify-content:center;gap:6px;width:100%;text-decoration:none;color:#fff;padding:11px;border-radius:11px;font-weight:700;font-size:13px;margin-top:7px}
-.retiree-card{background:linear-gradient(135deg,#fefce8,#fef9c3);border-right:5px solid #ca8a04}[data-theme="dark"].retiree-card{background:linear-gradient(135deg,#1a1805,#2a240a);border-color:#a16207}
-.alert-bar{position:fixed;top:0;left:0;right:0;z-index:9999;padding:14px 16px;display:none}.alert-bar.show{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.alert-red{background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff}.alert-orange{background:linear-gradient(135deg,#f97316,#c2410c);color:#fff}
+.card{background:var(--card);border-radius:20px;padding:0;margin-bottom:14px;border:1px solid var(--border);overflow:hidden}
+.card-content{padding:14px 16px}.card h2{margin:0 0 6px;font-size:16px;color:var(--blue)}
+.service-btn{display:flex;justify-content:center;width:100%;text-decoration:none;color:#fff;padding:11px;border-radius:11px;font-weight:700;font-size:13px;margin-top:7px}
 .tabs{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:8px 4px 10px;z-index:99;border-radius:22px 22px 0 0}
-.tab{border:0;background:transparent;color:var(--muted);padding:8px 10px;border-radius:12px;font-size:10px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}.tab.active{background:var(--blue);color:#fff}
-.grid4{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.quick-card{background:var(--card);border-radius:16px;padding:12px;text-align:center;text-decoration:none;color:var(--text);border:1px solid var(--border)}
-.quick-card img{width:100%;height:60px;object-fit:cover;border-radius:10px;margin-bottom:6px}
+.tab{border:0;background:transparent;color:var(--muted);padding:8px 10px;border-radius:12px;font-size:10px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center}.tab.active{background:var(--blue);color:#fff}
+.grid4{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick-card{background:var(--card);border-radius:16px;padding:12px;text-align:center;text-decoration:none;color:var(--text);border:1px solid var(--border)}.quick-card img{width:100%;height:60px;object-fit:cover;border-radius:10px;margin-bottom:6px}
 #map{height:340px;border-radius:16px;border:2px solid var(--blue);margin-top:10px}
 .chip{padding:5px 10px;border-radius:20px;font-size:11px;border:1px solid var(--border);background:var(--card);cursor:pointer}.chip.active{background:var(--blue);color:#fff}
-.pill{display:inline-flex;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700;background:var(--bg);color:var(--muted);margin-bottom:6px}
-.hidden{display:none!important}
-.check-list{list-style:none;padding:0;margin:8px 0}.check-list li{padding:6px 0;border-bottom:1px dashed var(--border);font-size:13px;display:flex;gap:8px}
 </style>
 </head>
-<body data-theme="light">
-<div id="alertBar" class="alert-bar"><div><b id="alertTitle"></b><br><small id="alertText"></small></div><button onclick="document.getElementById('alertBar').classList.remove('show')" style="background:#0003;color:#fff;border:0;border-radius:8px;padding:6px 8px">✕</button></div>
-
-<header>
-<div class="top-bar"><span style="font-size:11px;background:#fff2;padding:5px 10px;border-radius:20px">V7 • قسم المتقاعدين 👴</span><button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button></div>
-<h1 style="margin:0;font-size:28px">📍 وين أراجع؟</h1>
-<p style="opacity:.9;margin:6px 0 0;font-size:12px">دليلك الشامل - متقاعدين + رعاية + جواز + خريطة</p>
-</header>
-
+<body>
+<header><h1 style="margin:0">📍 وين أراجع؟</h1><p style="opacity:.9;font-size:12px">جاهز لسوق بلي - V7.1</p></header>
 <div id="p-home" class="page active">
-<div class="search-wrap">
-<input type="text" id="searchInput" placeholder="ابحث: متقاعد، جواز، بطاقة، رعاية..." oninput="searchServices()">
-<div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">
-<button class="chip active" style="background:#ca8a04;color:#fff" onclick="filterQuick('متقاعد')">👴 متقاعد</button>
-<button class="chip" onclick="filterQuick('جواز')">🛂 جواز</button>
-<button class="chip" onclick="filterQuick('بطاقة')">🪪 بطاقة</button>
-<button class="chip" onclick="filterQuick('رعاية')">👨‍👩‍👧 رعاية</button>
-<button class="chip" onclick="clearSearch()">🔄 الكل</button>
-</div>
-</div>
-
+<div class="search-wrap"><input type="text" id="searchInput" placeholder="ابحث: متقاعد، جواز..." oninput="searchServices()"></div>
 <div class="grid4" style="margin-top:12px">
-<a class="quick-card" href="https://ur.gov.iq/" target="_blank"><img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=300"><b>🏛️ بوابة أور</b></a>
-<a class="quick-card" href="#" onclick="openTab('p-retiree',document.querySelectorAll('.tab')[2]);return false"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=300"><b>👴 المتقاعدين</b></a>
-<a class="quick-card" href="https://ur.gov.iq/index/show-eservice/30020/28/org" target="_blank"><img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?q=80&w=300"><b>🛂 الجواز</b></a>
-<a class="quick-card" href="https://spa.gov.iq/umbrella/search.aspx" target="_blank"><img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=300"><b>👨‍👩‍👧 الرعاية</b></a>
+<a class="quick-card" href="https://ur.gov.iq/" target="_blank"><img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=300"><b>🏛️ أور</b></a>
+<a class="quick-card" href="#" onclick="openTab('p-retiree')"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=300"><b>👴 متقاعد</b></a>
+<a class="quick-card" href="https://ur.gov.iq/index/show-eservice/30020/28/org" target="_blank"><img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?q=80&w=300"><b>🛂 جواز</b></a>
+<a class="quick-card" href="https://spa.gov.iq/umbrella/search.aspx" target="_blank"><img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=300"><b>👨‍👩‍👧 رعاية</b></a>
 </div>
-
-<!-- قسم المتقاعدين المصغر في الرئيسية -->
-<div class="card retiree-card" style="margin-top:12px">
-<div class="card-content">
-<div class="pill" style="background:#facc15;color:#713f12">👴 قسم جديد - للمتقاعدين</div>
-<h2 style="color:#854d0e">👴 خدمات المتقاعدين - كل ما تحتاجه</h2>
-<p>رواتب، تثبيت حياة، استعلام، شكاوى، وفروع التقاعد في بغداد والمحافظات.</p>
-<button class="service-btn" style="background:#ca8a04" onclick="openTab('p-retiree',document.querySelectorAll('.tab')[2])">👴 فتح قسم المتقاعدين الكامل</button>
+<div class="card" style="margin-top:12px;border-right:5px solid #ca8a04"><div class="card-content"><h2>👴 قسم المتقاعدين</h2><p>رواتب، إثبات حياة، فروع التقاعد، شكاوى 422</p><button class="service-btn" style="background:#ca8a04" onclick="openTab('p-retiree')">فتح القسم</button></div></div>
+<div class="card" style="border-right:5px solid #f97316"><div class="card-content"><h2>🔔 تنبيه البيان السنوي</h2><input type="date" id="annualDate" style="width:100%;padding:10px;border-radius:9px"><button onclick="localStorage.setItem('annualDate',document.getElementById('annualDate').value);alert('✅ تم الحفظ')" style="width:100%;border:0;border-radius:9px;padding:11px;margin-top:8px;background:#f97316;color:#fff">💾 حفظ التنبيه</button></div></div>
+<div class="card"><div class="card-content"><h2>🪪 البطاقة الوطنية</h2><a class="service-btn" style="background:#075985" href="https://ur.gov.iq/index/show-eservice/51434/16/org" target="_blank">فتح الخدمة</a></div></div>
 </div>
-</div>
-
-<!-- البيان السنوي مع التنبيه -->
-<div class="card" style="border-right:5px solid #f97316"><div class="card-content"><h2>🔔 استشعار البيان السنوي</h2><input type="date" id="annualDate" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;background:var(--card);color:var(--text)"><button onclick="saveAnnualDate()" style="width:100%;border:0;border-radius:9px;padding:11px;margin-top:8px;background:#f97316;color:#fff;font-weight:800">💾 حفظ وتفعيل التنبيه</button><p id="annualMessage" style="font-weight:700;font-size:13px;margin-top:8px"></p></div></div>
-
-<div class="card"><div class="card-content"><h2>🪪 البطاقة الوطنية</h2><a class="service-btn" style="background:#075985" href="https://ur.gov.iq/index/show-eservice/51434/16/org" target="_blank">🪪 فتح الخدمة</a></div></div>
-<div class="card"><div class="card-content"><h2>🚘 المرور</h2><a class="service-btn" style="background:#dc2626" href="https://ur.gov.iq/index/show-eservice/50541/10165/org" target="_blank">🚗 الغرامات</a></div></div>
-</div>
-
-<!-- صفحة المتقاعدين الكاملة -->
-<div id="p-retiree" class="page">
-<div class="card retiree-card">
-<div class="card-bg" style="background-image:url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800')"></div>
-<div class="card-content">
-<div class="pill" style="background:#facc15;color:#713f12">هيئة التقاعد الوطنية</div>
-<h2 style="color:#854d0e">👴 بوابة المتقاعدين الشاملة</h2>
-<p>كل خدمات المتقاعدين العراقيين في مكان واحد.</p>
-</div>
-</div>
-
-<div class="card">
-<div class="card-content">
-<h2>💰 رواتب المتقاعدين</h2>
-<a class="service-btn" style="background:#ca8a04" href="https://ur.gov.iq/index/show-eservice/51023/10044/org" target="_blank">💰 الاستعلام عن راتب التقاعد</a>
-<a class="service-btn" style="background:#16a34a" href="https://www.nasiriyah.org/" target="_blank">📅 جدول رواتب التقاعد 2026</a>
-<a class="service-btn" style="background:#075985" href="https://pension.iq/" target="_blank">🏛️ موقع هيئة التقاعد الرسمي</a>
-
-<h2 style="margin-top:16px">📋 إثبات الحياة والخدمات</h2>
-<a class="service-btn" style="background:#0891b2" href="https://ur.gov.iq/index/show-eservice/51023/10044/org" target="_blank">✅ إثبات الحياة السنوي للمتقاعد</a>
-<a class="service-btn" style="background:#7c3aed" href="https://ur.gov.iq/index/show-eservice/51023/10044/org" target="_blank">📄 طلب كتاب تأييد تقاعدي</a>
-<a class="service-btn" style="background:#0f172a" href="https://ur.gov.iq/index/show-eservice/51023/10044/org" target="_blank">👨‍👩‍👧 إضافة وريث / تعديل بيانات</a>
-
-<h2 style="margin-top:16px">📞 شكاوى واستفسارات</h2>
-<a class="service-btn" style="background:#dc2626" href="tel:422" >📞 اتصل بهيئة التقاعد - 422</a>
-<a class="service-btn" style="background:#ea580c" href="https://ur.gov.iq/index/all-services/all/" target="_blank">📝 تقديم شكوى إلكترونية</a>
-
-<h2 style="margin-top:16px">📍 فروع التقاعد - بغداد</h2>
-<ul class="check-list">
-<li>📍 <b>الكرادة:</b> هيئة التقاعد الوطنية - قرب الجسر المعلق - 8ص-2ظ</li>
-<li>📍 <b>الوزيرية:</b> فرع تقاعد الرصافة - 8ص-2ظ</li>
-<li>📍 <b>المنصور:</b> فرع تقاعد الكرخ</li>
-<li>📍 <b>الشعب:</b> فرع تقاعد الشعب</li>
-</ul>
-<a class="service-btn" style="background:#16a34a" href="https://www.google.com/maps/search/هيئة+التقاعد+الوطنية+بغداد" target="_blank">🧭 فتح مواقع فروع التقاعد على الخريطة</a>
-
-<h2 style="margin-top:16px">📋 مستمسكات مطلوبة للمتقاعد</h2>
-<ul class="check-list">
-<li>✅ هوية التقاعد الأصلية + نسخة</li>
-<li>✅ البطاقة الوطنية الموحدة</li>
-<li>✅ بطاقة السكن</li>
-<li>✅ صور شخصية خلفية بيضاء (2)</li>
-<li>✅ كتاب إثبات الحياة من المختار (للبعض)</li>
-</ul>
-
-<div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:10px;margin-top:12px">
-<label style="font-size:12px;font-weight:700">📅 تذكير إثبات الحياة السنوي (مثل البيان):</label>
-<input type="date" id="retireeDate" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;background:var(--card);color:var(--text);margin-top:6px">
-<button onclick="saveRetireeDate()" style="width:100%;border:0;border-radius:9px;padding:11px;margin-top:8px;background:#ca8a04;color:#fff;font-weight:800">💾 حفظ تذكير التقاعد 🔔</button>
-<p id="retireeMessage" style="font-weight:700;font-size:13px;margin-top:8px"></p>
-</div>
-
-</div>
-</div>
-</div>
-
-<div id="p-map" class="page"><div class="card"><div class="card-content"><h2>🗺️ مواقع الدوائر</h2><div id="map"></div></div></div></div>
-
+<div id="p-retiree" class="page"><div class="card"><div class="card-content"><h2>👴 خدمات المتقاعدين الكاملة</h2><a class="service-btn" style="background:#ca8a04" href="https://ur.gov.iq/index/show-eservice/51023/10044/org" target="_blank">💰 استعلام راتب التقاعد</a><a class="service-btn" style="background:#075985" href="https://pension.iq/" target="_blank">🏛️ هيئة التقاعد الرسمي</a><a class="service-btn" style="background:#dc2626" href="tel:422">📞 اتصل 422</a><button class="service-btn" style="background:#666" onclick="openTab('p-home')">🔙 رجوع</button></div></div></div>
+<div id="p-map" class="page"><div class="card"><div class="card-content"><h2>🗺️ الخريطة</h2><div id="map"></div><button class="service-btn" style="background:#666" onclick="openTab('p-home')">🔙 رجوع</button></div></div></div>
 <div class="tabs">
-<button class="tab active" onclick="openTab('p-home',this)">🏠<span>الرئيسية</span></button>
-<button class="tab" onclick="openTab('p-map',this)">🗺️<span>الخريطة</span></button>
-<button class="tab" onclick="openTab('p-retiree',this)">👴<span>المتقاعد</span></button>
-<button class="tab" onclick="toggleTheme()">🌙<span>ليلي</span></button>
+<button class="tab active" onclick="openTab('p-home')">🏠<span>الرئيسية</span></button>
+<button class="tab" onclick="openTab('p-map')">🗺️<span>الخريطة</span></button>
+<button class="tab" onclick="openTab('p-retiree')">👴<span>المتقاعد</span></button>
 </div>
-
 <script>
-function applyTheme(t){document.body.setAttribute('data-theme',t);document.getElementById('themeBtn').textContent=t==='dark'?'☀️':'🌙';localStorage.setItem('theme',t)}
-function toggleTheme(){applyTheme(document.body.getAttribute('data-theme')==='dark'?'light':'dark')}
-applyTheme(localStorage.getItem('theme')||'light');
-function openTab(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');el.classList.add('active');if(id==='p-map')setTimeout(()=>map.invalidateSize(),200)}
+function openTab(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active')}
 function searchServices(){const txt=document.getElementById('searchInput').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(txt)?'block':'none'})}
-function filterQuick(w){document.getElementById('searchInput').value=w;searchServices();openTab('p-home',document.querySelectorAll('.tab')[0])}
-function clearSearch(){document.getElementById('searchInput').value='';searchServices()}
-
-// بيان سنوي
-function saveAnnualDate(){const d=document.getElementById('annualDate').value;if(!d)return;localStorage.setItem('annualDate',d);checkAnnual()}
-function checkAnnual(){const s=localStorage.getItem('annualDate');if(!s)return;const msg=document.getElementById('annualMessage');const inp=document.getElementById('annualDate');inp.value=s;const p=s.split('-');const sd=new Date(+p[0],+p[1]-1,+p[2]);const next=new Date(sd);next.setFullYear(next.getFullYear()+1);const diff=Math.ceil((next-new Date())/86400000);if(diff<=0){msg.textContent='⛔ انتهى موعد البيان!';msg.style.color='#dc2626';showAlert('⛔ البيان السنوي منتهي!','راجع فوراً')}else if(diff<=30){msg.textContent='🟠 باقي '+diff+' يوم';msg.style.color='#ea580c';showAlert('🟠 تذكير البيان','باقي '+diff+' يوم')}else{msg.textContent='✅ باقي '+diff+' يوم';msg.style.color='#16a34a'}}
-function showAlert(t,x){const b=document.getElementById('alertBar');b.className='alert-bar alert-red show';document.getElementById('alertTitle').textContent=t;document.getElementById('alertText').textContent=x}
-checkAnnual();
-
-// متقاعدين - استشعار خاص
-function saveRetireeDate(){const d=document.getElementById('retireeDate').value;if(!d){alert('اختر التاريخ');return}localStorage.setItem('retireeDate',d);checkRetiree();alert('✅ تم حفظ تذكير التقاعد')}
-function checkRetiree(){const s=localStorage.getItem('retireeDate');if(!s)return;const msg=document.getElementById('retireeMessage');const inp=document.getElementById('retireeDate');inp.value=s;const p=s.split('-');const sd=new Date(+p[0],+p[1]-1,+p[2]);const next=new Date(sd);next.setFullYear(next.getFullYear()+1);const diff=Math.ceil((next-new Date())/86400000);if(diff<=0){msg.textContent='⛔ حان موعد إثبات الحياة للمتقاعد!';msg.style.color='#dc2626'}else{msg.textContent='✅ باقي '+diff+' يوم لإثبات الحياة القادم';msg.style.color='#16a34a'}}
-(function(){const s=localStorage.getItem('retireeDate');if(s)checkRetiree()})();
-
-let map=L.map('map').setView([33.3152,44.3661],11);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);L.marker([33.3051,44.3672]).addTo(map).bindPopup('التقاعد - الكرادة');
+let map=L.map('map').setView([33.3152,44.3661],11);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}
 </script>
-<link rel="manifest" href="/manifest.json">
-<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
 </body>
 </html>
