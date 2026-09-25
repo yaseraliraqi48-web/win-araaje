@@ -186,7 +186,62 @@
     ><button class="clear-btn" onclick="clearSearch()">
   🔄 إظهار كل الخدمات
 </button>
+<!-- 🔔 تنبيه البيان السنوي -->
+<div class="card notice service-card">
+  <h2>🔔 تذكير البيان السنوي للرعاية الاجتماعية</h2>
 
+  <p>
+    يمكنك حفظ تاريخ آخر تحديث للبيان السنوي،
+    وسيتم عرض تذكير لك عند اقتراب موعد التحديث القادم.
+  </p>
+
+  <label for="annualDate">
+    📅 تاريخ آخر تحديث:
+  </label>
+
+  <input
+    type="date"
+    id="annualDate"
+    style="
+      width:100%;
+      padding:13px;
+      margin-top:10px;
+      border:1px solid #cbd5e1;
+      border-radius:10px;
+      font-size:16px;
+    "
+  >
+
+  <button
+    onclick="saveAnnualDate()"
+    style="
+      width:100%;
+      padding:13px;
+      margin-top:10px;
+      border:none;
+      border-radius:10px;
+      background:#f97316;
+      color:white;
+      font-size:16px;
+      font-weight:bold;
+    "
+  >
+    💾 حفظ تاريخ البيان السنوي
+  </button>
+
+  <p id="annualMessage"
+     style="margin-top:12px;font-weight:bold;">
+  </p>
+
+  <a
+    class="service-btn purple"
+    href="https://spa.gov.iq/umbrella/search-annual.aspx"
+    target="_blank"
+    rel="noopener"
+  >
+    📋 فتح البيان السنوي الرسمي
+  </a>
+</div>
   </div>  <!-- الاستعلامات -->  <div class="card service-card">
     <h2>🔎 الاستعلامات الحكومية المهمة</h2>
     <p>وصول سريع إلى عدد من الخدمات والاستعلامات الحكومية الرسمية.</p><a class="service-btn teal"
