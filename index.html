@@ -1,633 +1,151 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="theme-color" content="#075985">
-  <meta name="description" content="وين أراجع؟ - دليلك للوصول إلى الخدمات الحكومية العراقية">
-
-  <title>وين أراجع؟</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Tahoma, Arial, sans-serif;
-      background: #f1f5f9;
-      color: #172033;
-    }
-
-    header {
-      background: linear-gradient(135deg, #075985, #0891b2);
-      color: white;
-      padding: 32px 18px 38px;
-      text-align: center;
-      border-radius: 0 0 28px 28px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.15);
-    }
-
-    header .logo {
-      font-size: 48px;
-      margin-bottom: 5px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-      font-weight: 800;
-    }
-
-    header p {
-      margin: 10px 0 0;
-      font-size: 16px;
-      opacity: .95;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 760px;
-      margin: auto;
-      padding: 16px;
-    }
-
-    .search-box {
-      background: white;
-      padding: 15px;
-      border-radius: 18px;
-      margin-top: -22px;
-      margin-bottom: 18px;
-      position: relative;
-      box-shadow: 0 5px 18px rgba(15,23,42,.10);
-    }
-
-    #searchInput {
-      width: 100%;
-      padding: 16px 18px;
-      border: 2px solid #e2e8f0;
-      border-radius: 14px;
-      font-size: 17px;
-      outline: none;
-      direction: rtl;
-    }
-
-    #searchInput:focus {
-      border-color: #0891b2;
-    }
-
-    .clear-btn {
-      width: 100%;
-      border: none;
-      border-radius: 12px;
-      padding: 13px;
-      margin-top: 10px;
-      background: #e2e8f0;
-      color: #334155;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .section-title {
-      margin: 22px 4px 12px;
-      font-size: 21px;
-      color: #0f172a;
-    }
-
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 18px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 15px rgba(15,23,42,.07);
-    }
-
-    .card h2 {
-      margin: 0 0 8px;
-      color: #075985;
-      font-size: 20px;
-    }
-
-    .card p {
-      line-height: 1.8;
-      color: #64748b;
-      margin: 8px 0;
-    }
-
-    .service-btn {
-      display: block;
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-      padding: 14px;
-      margin-top: 10px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: bold;
-      transition: transform .15s, opacity .15s;
-    }
-
-    .service-btn:active {
-      transform: scale(.98);
-      opacity: .9;
-    }
-
-    .green { background: #16a34a; }
-    .blue { background: #2563eb; }
-    .cyan { background: #0891b2; }
-    .purple { background: #7c3aed; }
-    .orange { background: #ea580c; }
-    .red { background: #dc2626; }
-    .teal { background: #0f766e; }
-    .gray { background: #475569; }
-    .sky { background: #0284c7; }
-
-    .notice {
-      background: #fff7ed;
-      border-right: 5px solid #f97316;
-    }
-
-    .notice h2 {
-      color: #c2410c;
-    }
-
-    .date-input {
-      width: 100%;
-      padding: 14px;
-      margin-top: 8px;
-      border: 1px solid #cbd5e1;
-      border-radius: 12px;
-      font-size: 16px;
-    }
-
-    .save-date {
-      width: 100%;
-      border: none;
-      border-radius: 12px;
-      padding: 14px;
-      margin-top: 10px;
-      background: #f97316;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .quick-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .quick-card {
-      background: white;
-      border-radius: 17px;
-      padding: 17px 10px;
-      text-align: center;
-      text-decoration: none;
-      color: #172033;
-      box-shadow: 0 4px 14px rgba(15,23,42,.07);
-      font-weight: bold;
-    }
-
-    .quick-icon {
-      font-size: 31px;
-      display: block;
-      margin-bottom: 7px;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .no-results {
-      display: none;
-      background: white;
-      padding: 20px;
-      border-radius: 16px;
-      text-align: center;
-      color: #64748b;
-      margin-bottom: 15px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 15px 35px;
-      color: #64748b;
-      font-size: 14px;
-      line-height: 1.9;
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 28px;
-      }
-
-      header .logo {
-        font-size: 42px;
-      }
-
-      .container {
-        padding: 12px;
-      }
-
-      .quick-grid {
-        gap: 9px;
-      }
-    }
-  </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#075985">
+<title>وين أراجع؟ - النسخة الفخمة V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@800;700;500&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#075985;--cyan:#0891b2;--bg:#f0f7fb;--card:#ffffff;--border:#e2e8f0}
+*{box-sizing:border-box;font-family:'Tajawal',Tahoma,sans-serif}body{margin:0;background:var(--bg);color:#0f172a}
+header{background:linear-gradient(135deg,#032f4a 0%,#075985 50%,#0891b2 100%);color:#fff;padding:28px 20px 90px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-50%;right:-30%;width:300px;height:300px;background:#fff1;border-radius:50%;filter:blur(40px)}
+header::after{content:'';position:absolute;bottom:-20%;left:-20%;width:250px;height:250px;background:#0891b244;border-radius:50%;filter:blur(30px)}
+.h-icon{width:72px;height:72px;margin:0 auto 12px;background:#fff2;border:1px solid #fff3;border-radius:20px;display:grid;place-items:center;font-size:38px;backdrop-filter:blur(10px);box-shadow:0 8px 24px #0003}
+header h1{margin:0;font-size:34px;font-weight:800;letter-spacing:-.5px}header p{opacity:.9;margin-top:8px;font-size:15px}
+.container{max-width:800px;margin:-60px auto 0;padding:0 14px 30px;position:relative;z-index:2}
+.search-wrap{background:var(--card);border-radius:22px;padding:14px;box-shadow:0 12px 32px #07598518;border:1px solid var(--border)}
+#searchInput{width:100%;padding:16px 18px 16px 50px;border:2px solid #e2e8f0;border-radius:14px;font-size:16px;outline:none;background:#f8fafc url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.3-4.3"/></svg>') no-repeat 16px center;transition:.2s}
+#searchInput:focus{border-color:var(--cyan);background-color:#fff;box-shadow:0 0 0 4px #0891b222}
+.quick-row{display:flex;gap:10px;margin-top:12px}
+.q-btn{flex:1;border:0;border-radius:12px;padding:10px;font-weight:700;cursor:pointer;font-size:13px}
+.section{display:flex;justify-content:space-between;align-items:center;margin:24px 4px 12px}
+.section h2{margin:0;font-size:20px}
+.grid4{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.quick-card{background:var(--card);border-radius:18px;padding:16px 12px;text-align:center;text-decoration:none;color:#0f172a;border:1px solid var(--border);box-shadow:0 4px 14px #00000008;transition:.2s;position:relative;overflow:hidden}
+.quick-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px #07598515;border-color:var(--cyan)}
+.qi{width:48px;height:48px;margin:0 auto 8px;border-radius:12px;display:grid;place-items:center;font-size:24px}
+.card{background:var(--card);border-radius:20px;padding:18px;margin-bottom:14px;border:1px solid var(--border);box-shadow:0 6px 20px #00000006;transition:.2s}
+.card:hover{box-shadow:0 12px 28px #0000000c}
+.card h2{margin:0 0 6px;font-size:18px;color:var(--blue);display:flex;align-items:center;gap:8px}
+.card p{color:#64748b;line-height:1.7;margin:6px 0 12px;font-size:14px}
+.service-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;text-decoration:none;color:#fff;padding:13px;border-radius:12px;font-weight:700;font-size:14px;margin-top:8px;transition:.2s;box-shadow:0 4px 12px #0002}
+.service-btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.service-btn:active{transform:scale(.98)}
+.notice-card{background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid #fed7aa;border-right:5px solid #f97316}
+.notice-card h2{color:#9a3412}
+.pill{display:inline-flex;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;background:#f1f5f9;color:#475569;margin-bottom:8px}
+.hidden{display:none!important}
+.no-results{background:#fff;padding:22px;border-radius:16px;text-align:center;border:1px dashed #cbd5e1;color:#64748b;margin:12px 0}
+footer{text-align:center;padding:28px;color:#94a3b8;font-size:12px}
+.date-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px;margin-top:10px}
+.date-input{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px}
+.save-date{width:100%;border:0;border-radius:10px;padding:12px;margin-top:10px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-weight:800;cursor:pointer}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.service-card{animation:fadeIn.3s ease}
+</style>
 </head>
-
 <body>
-
 <header>
-  <div class="logo">📍</div>
-  <h1>وين أراجع؟</h1>
-  <p>دليلك للوصول إلى الخدمات الحكومية العراقية</p>
+<div class="h-icon">📍</div>
+<h1>وين أراجع؟</h1>
+<p>دليلك الذكي للخدمات الحكومية العراقية • نسخة 2026 الفخمة</p>
 </header>
 
 <div class="container">
-
-  <!-- البحث -->
-  <div class="search-box">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="🔎 ابحث عن خدمة مثل: بطاقة، مرور، رعاية..."
-      oninput="searchServices()"
-    >
-
-    <button class="clear-btn" onclick="clearSearch()">
-      🔄 إظهار جميع الخدمات
-    </button>
-  </div>
-
-  <div id="noResults" class="no-results">
-    🔍 لم نجد خدمة مطابقة للبحث.
-  </div>
-
-  <!-- الوصول السريع -->
-  <h2 class="section-title">⚡ الوصول السريع</h2>
-
-  <div class="quick-grid">
-
-    <a class="quick-card" href="https://ur.gov.iq/" target="_blank" rel="noopener">
-      <span class="quick-icon">🏛️</span>
-      بوابة أور
-    </a>
-
-    <a class="quick-card" href="https://ur.gov.iq/index/show-eservice/51434/16/org" target="_blank" rel="noopener">
-      <span class="quick-icon">🪪</span>
-      البطاقة الوطنية
-    </a>
-
-    <a class="quick-card" href="https://ur.gov.iq/index/show-eservice/50541/10165/org" target="_blank" rel="noopener">
-      <span class="quick-icon">🚗</span>
-      غرامات المركبات
-    </a>
-
-    <a class="quick-card" href="https://spa.gov.iq/umbrella/search.aspx" target="_blank" rel="noopener">
-      <span class="quick-icon">👨‍👩‍👧</span>
-      الرعاية الاجتماعية
-    </a>
-
-  </div>
-
-  <!-- البيان السنوي -->
-  <div class="card notice service-card">
-
-    <h2>🔔 تذكير البيان السنوي</h2>
-
-    <p>
-      احفظ تاريخ آخر تحديث للبيان السنوي،
-      وسيحسب التطبيق الموعد التقريبي القادم ويعرض لك التنبيه.
-    </p>
-
-    <label for="annualDate">
-      📅 تاريخ آخر تحديث:
-    </label>
-
-    <input
-      type="date"
-      id="annualDate"
-      class="date-input"
-    >
-
-    <button class="save-date" onclick="saveAnnualDate()">
-      💾 حفظ التاريخ
-    </button>
-
-    <p id="annualMessage"></p>
-
-    <a
-      class="service-btn purple"
-      href="https://spa.gov.iq/umbrella/search-annual.aspx"
-      target="_blank"
-      rel="noopener"
-    >
-      📋 فتح البيان السنوي الرسمي
-    </a>
-
-  </div>
-
-  <!-- الاستعلامات -->
-  <div class="card service-card">
-
-    <h2>🔎 الاستعلامات الحكومية</h2>
-
-    <p>
-      مجموعة من الروابط للوصول السريع إلى الخدمات والاستعلامات الحكومية.
-    </p>
-
-    <a class="service-btn teal"
-       href="https://ur.gov.iq/"
-       target="_blank"
-       rel="noopener">
-      🏛️ بوابة أور للخدمات الحكومية
-    </a>
-
-    <a class="service-btn blue"
-       href="https://spa.gov.iq/umbrella/search.aspx"
-       target="_blank"
-       rel="noopener">
-      👨‍👩‍👧 الاستعلام عن الرعاية الاجتماعية والدفعات
-    </a>
-
-    <a class="service-btn purple"
-       href="https://spa.gov.iq/umbrella/search-annual.aspx"
-       target="_blank"
-       rel="noopener">
-      📋 البيان السنوي
-    </a>
-
-    <a class="service-btn cyan"
-       href="https://spa.gov.iq/umbrella/search-address.aspx"
-       target="_blank"
-       rel="noopener">
-      🏠 تحديث عنوان السكن والتحصيل الدراسي
-    </a>
-
-    <a class="service-btn green"
-       href="https://spa.gov.iq/umbrella/search-ration.aspx"
-       target="_blank"
-       rel="noopener">
-      🪪 تحديث البطاقة التموينية
-    </a>
-
-    <a class="service-btn red"
-       href="https://ur.gov.iq/index/show-eservice/50541/10165/org"
-       target="_blank"
-       rel="noopener">
-      🚗 الاستعلام عن غرامات المركبات
-    </a>
-
-    <a class="service-btn green"
-       href="https://play.google.com/store/apps/details?id=com.moi.ayniq"
-       target="_blank"
-       rel="noopener">
-      📱 تحميل تطبيق عين العراق
-    </a>
-
-    <a class="service-btn orange"
-       href="https://traffic.moi.gov.iq/"
-       target="_blank"
-       rel="noopener">
-      🚦 مديرية المرور العامة
-    </a>
-
-    <a class="service-btn gray"
-       href="https://ur.gov.iq/index/all-services/all/"
-       target="_blank"
-       rel="noopener">
-      📚 جميع الخدمات الحكومية
-    </a>
-
-  </div>
-
-  <!-- البطاقة الوطنية -->
-  <div class="card service-card">
-
-    <h2>🪪 البطاقة الوطنية</h2>
-
-    <p>
-      الوصول السريع إلى خدمة البطاقة الوطنية عبر بوابة أور.
-    </p>
-
-    <a class="service-btn sky"
-       href="https://ur.gov.iq/index/show-eservice/51434/16/org"
-       target="_blank"
-       rel="noopener">
-      🪪 فتح خدمة البطاقة الوطنية
-    </a>
-
-  </div>
-
-  <!-- المرور -->
-  <div class="card service-card">
-
-    <h2>🚘 خدمات المرور</h2>
-
-    <p>
-      الوصول إلى خدمات المرور وحجز المواعيد وإنجاز معاملات المركبات وإجازات السياقة.
-    </p>
-
-    <a class="service-btn sky"
-       href="https://ur.gov.iq/index/show-eservice/51530/10032/org"
-       target="_blank"
-       rel="noopener">
-      📅 حجز موعد المرور
-    </a>
-
-    <a class="service-btn red"
-       href="https://ur.gov.iq/index/show-eservice/50541/10165/org"
-       target="_blank"
-       rel="noopener">
-      🚗 الاستعلام عن غرامات المركبات
-    </a>
-
-    <a class="service-btn orange"
-       href="https://traffic.moi.gov.iq/"
-       target="_blank"
-       rel="noopener">
-      🚦 موقع مديرية المرور العامة
-    </a>
-
-  </div>
-
-  <!-- تنبيه -->
-  <div class="card notice">
-
-    <h2>ℹ️ تنبيه مهم</h2>
-
-    <p>
-      تطبيق «وين أراجع؟» هو دليل للوصول إلى الخدمات والمواقع الحكومية الرسمية.
-      عند الضغط على أحد الأزرار قد يتم فتح الموقع الرسمي للجهة الحكومية.
-    </p>
-
-  </div>
-
+<div class="search-wrap">
+<input type="text" id="searchInput" placeholder="ابحث... بطاقة، مرور، رعاية، جواز..." oninput="searchServices()">
+<div class="quick-row">
+<button class="q-btn" style="background:#e0f2fe;color:#075985" onclick="filterQuick('بطاقة')">🪪 بطاقة</button>
+<button class="q-btn" style="background:#dcfce7;color:#166534" onclick="filterQuick('مرور')">🚗 مرور</button>
+<button class="q-btn" style="background:#fef9c3;color:#854d0e" onclick="filterQuick('رعاية')">👨‍👩‍👧 رعاية</button>
+<button class="q-btn" style="background:#f1f5f9;color:#334155" onclick="clearSearch()">🔄 الكل</button>
+</div>
 </div>
 
-<footer>
-  <strong>📍 وين أراجع؟</strong><br>
-  دليلك للوصول إلى الخدمات الحكومية العراقية<br>
-  الإصدار الأول
-</footer>
+<div id="noResults" class="no-results" style="display:none">🔍 لم نجد خدمة مطابقة، جرب كلمة ثانية.</div>
 
+<div class="section"><h2>⚡ الوصول السريع</h2><small style="color:#64748b">الأكثر استخداماً</small></div>
+<div class="grid4">
+<a class="quick-card" href="https://ur.gov.iq/" target="_blank"><div class="qi" style="background:#e0f2fe">🏛️</div><b>بوابة أور</b><br><small style="color:#64748b">كل الخدمات</small></a>
+<a class="quick-card" href="https://ur.gov.iq/index/show-eservice/51434/16/org" target="_blank"><div class="qi" style="background:#dbeafe">🪪</div><b>البطاقة الوطنية</b><br><small style="color:#64748b">حجز وموعد</small></a>
+<a class="quick-card" href="https://ur.gov.iq/index/show-eservice/50541/10165/org" target="_blank"><div class="qi" style="background:#fee2e2">🚗</div><b>غرامات المركبات</b><br><small style="color:#64748b">استعلام فوري</small></a>
+<a class="quick-card" href="https://spa.gov.iq/umbrella/search.aspx" target="_blank"><div class="qi" style="background:#dcfce7">👨‍👩‍👧</div><b>الرعاية الاجتماعية</b><br><small style="color:#64748b">الباحثين</small></a>
+</div>
+
+<div class="card notice-card service-card" style="margin-top:18px">
+<div class="pill" style="background:#fed7aa;color:#9a3412">🔔 تذكير ذكي</div>
+<h2>البيان السنوي - لا تنسى!</h2>
+<p>احفظ تاريخ آخر تحديث، ونحن نذكرك قبل الموعد بـ 30 يوم.</p>
+<div class="date-box">
+<label style="font-size:13px;font-weight:700">📅 تاريخ آخر تحديث:</label>
+<input type="date" id="annualDate" class="date-input">
+<button class="save-date" onclick="saveAnnualDate()">💾 حفظ وتفعيل التذكير</button>
+<p id="annualMessage" style="margin:10px 0 0;font-weight:700"></p>
+</div>
+<a class="service-btn" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)" href="https://spa.gov.iq/umbrella/search-annual.aspx" target="_blank">📋 فتح البيان السنوي الرسمي</a>
+</div>
+
+<div class="card service-card">
+<div class="pill">🏛️ بوابة واحدة</div>
+<h2>🔎 الاستعلامات الحكومية</h2>
+<p>كل الروابط الرسمية في مكان واحد، بدون إعلانات وبدون لف.</p>
+<a class="service-btn" style="background:#075985" href="https://ur.gov.iq/" target="_blank">🏛️ بوابة أور للخدمات الحكومية</a>
+<a class="service-btn" style="background:#0e7490" href="https://spa.gov.iq/umbrella/search.aspx" target="_blank">👨‍👩‍👧 استعلام الرعاية والدفعات</a>
+<a class="service-btn" style="background:#0891b2" href="https://spa.gov.iq/umbrella/search-address.aspx" target="_blank">🏠 تحديث السكن والتحصيل</a>
+<a class="service-btn" style="background:#16a34a" href="https://spa.gov.iq/umbrella/search-ration.aspx" target="_blank">🪪 البطاقة التموينية</a>
+<a class="service-btn" style="background:#dc2626" href="https://ur.gov.iq/index/show-eservice/50541/10165/org" target="_blank">🚗 غرامات المركبات</a>
+<a class="service-btn" style="background:#ea580c" href="https://traffic.moi.gov.iq/" target="_blank">🚦 مديرية المرور العامة</a>
+</div>
+
+<div class="card service-card">
+<h2>🪪 البطاقة الوطنية</h2>
+<a class="service-btn" style="background:#0284c7" href="https://ur.gov.iq/index/show-eservice/51434/16/org" target="_blank">🪪 فتح خدمة البطاقة الوطنية - أور</a>
+</div>
+
+<div class="card service-card">
+<h2>🚘 خدمات المرور</h2>
+<a class="service-btn" style="background:#0284c7" href="https://ur.gov.iq/index/show-eservice/51530/10032/org" target="_blank">📅 حجز موعد المرور</a>
+<a class="service-btn" style="background:#dc2626" href="https://ur.gov.iq/index/show-eservice/50541/10165/org" target="_blank">🚗 استعلام الغرامات</a>
+</div>
+
+<div class="card" style="background:#f8fafc;border-style:dashed">
+<h2 style="color:#475569">ℹ️ تنبيه مهم</h2>
+<p>تطبيق «وين أراجع؟» هو دليل فقط، كل الأزرار تفتح المواقع الحكومية الرسمية مباشرة.</p>
+</div>
+</div>
+
+<footer><strong style="color:var(--blue)">📍 وين أراجع؟</strong><br>صنع بكل حب للمواطن العراقي • الإصدار الفخم V2 • 2026</footer>
 
 <script>
-
-function searchServices() {
-
-  const input = document.getElementById("searchInput");
-  const searchText = input.value.toLowerCase().trim();
-
-  const cards = document.querySelectorAll(".service-card");
-  const noResults = document.getElementById("noResults");
-
-  let found = false;
-
-  cards.forEach(function(card) {
-
-    const text = card.innerText.toLowerCase();
-
-    if (text.includes(searchText)) {
-
-      card.classList.remove("hidden");
-      found = true;
-
-    } else {
-
-      card.classList.add("hidden");
-
-    }
-
-  });
-
-  if (searchText !== "" && !found) {
-    noResults.style.display = "block";
-  } else {
-    noResults.style.display = "none";
-  }
+function searchServices(){
+ const txt=document.getElementById('searchInput').value.toLowerCase().trim();
+ const cards=document.querySelectorAll('.service-card');
+ const noRes=document.getElementById('noResults');
+ let found=false;
+ cards.forEach(c=>{
+   if(c.innerText.toLowerCase().includes(txt)){c.classList.remove('hidden');found=true}else{c.classList.add('hidden')}
+ });
+ noRes.style.display=(txt!==''&&!found)?'block':'none';
 }
-
-
-function clearSearch() {
-
-  document.getElementById("searchInput").value = "";
-
-  const cards = document.querySelectorAll(".service-card");
-
-  cards.forEach(function(card) {
-    card.classList.remove("hidden");
-  });
-
-  document.getElementById("noResults").style.display = "none";
+function clearSearch(){document.getElementById('searchInput').value='';searchServices()}
+function filterQuick(word){document.getElementById('searchInput').value=word;searchServices();document.querySelector('.container').scrollIntoView({behavior:'smooth',block:'start'})}
+function saveAnnualDate(){
+ const d=document.getElementById('annualDate').value;const m=document.getElementById('annualMessage');
+ if(!d){m.textContent='⚠️ اختر التاريخ أولاً';m.style.color='#dc2626';return}
+ localStorage.setItem('annualDate',d);m.textContent='✅ تم الحفظ';m.style.color='#15803d';calculateAnnualReminder();
 }
-
-
-function saveAnnualDate() {
-
-  const dateInput = document.getElementById("annualDate");
-  const message = document.getElementById("annualMessage");
-
-  if (!dateInput.value) {
-
-    message.textContent = "⚠️ يرجى اختيار التاريخ أولاً.";
-    message.style.color = "#dc2626";
-    return;
-
-  }
-
-  localStorage.setItem("annualDate", dateInput.value);
-
-  message.textContent =
-    "✅ تم حفظ تاريخ البيان السنوي بنجاح.";
-
-  message.style.color = "#15803d";
-
-  calculateAnnualReminder();
+function calculateAnnualReminder(){
+ const saved=localStorage.getItem('annualDate');if(!saved)return;
+ const inp=document.getElementById('annualDate');const msg=document.getElementById('annualMessage');inp.value=saved;
+ const p=saved.split('-');const sd=new Date(+p[0],+p[1]-1,+p[2]);const today=new Date();today.setHours(0,0,0,0);
+ const next=new Date(sd);next.setFullYear(next.getFullYear()+1);
+ const diff=Math.ceil((next-today)/86400000);
+ if(diff<=0){msg.textContent='⚠️ حان موعد البيان السنوي!';msg.style.color='#dc2626';}
+ else if(diff<=30){msg.textContent='🔔 باقي '+diff+' يوم فقط!';msg.style.color='#ea580c';}
+ else{msg.textContent='✅ باقي '+diff+' يوم للموعد القادم';msg.style.color='#15803d';}
 }
-
-
-function calculateAnnualReminder() {
-
-  const savedDate = localStorage.getItem("annualDate");
-
-  if (!savedDate) return;
-
-  const dateInput = document.getElementById("annualDate");
-  const message = document.getElementById("annualMessage");
-
-  dateInput.value = savedDate;
-
-  const parts = savedDate.split("-");
-
-  const saved = new Date(
-    Number(parts[0]),
-    Number(parts[1]) - 1,
-    Number(parts[2])
-  );
-
-  const today = new Date();
-
-  today.setHours(0, 0, 0, 0);
-
-  const nextDate = new Date(saved);
-
-  nextDate.setFullYear(nextDate.getFullYear() + 1);
-
-  const remainingDays = Math.ceil(
-    (nextDate - today) / (1000 * 60 * 60 * 24)
-  );
-
-  if (remainingDays <= 0) {
-
-    message.textContent =
-      "⚠️ حان موعد البيان السنوي أو تجاوز الموعد. يرجى فتح الخدمة الرسمية.";
-
-    message.style.color = "#dc2626";
-
-  } else if (remainingDays <= 30) {
-
-    message.textContent =
-      "🔔 اقترب موعد البيان السنوي. المتبقي تقريباً " +
-      remainingDays +
-      " يوم.";
-
-    message.style.color = "#ea580c";
-
-  } else {
-
-    message.textContent =
-      "✅ المتبقي تقريباً " +
-      remainingDays +
-      " يوم على الموعد السنوي القادم.";
-
-    message.style.color = "#15803d";
-
-  }
-}
-
-
-function loadAnnualDate() {
-
-  calculateAnnualReminder();
-
-}
-
-
-loadAnnualDate();
-
+calculateAnnualReminder();
 </script>
-
 </body>
 </html>
