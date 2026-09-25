@@ -299,31 +299,43 @@
 </div>
 
 <script>
+<script>
 function saveAnnualDate() {
-  const date = document.getElementById("annualDate").value;
+  const dateInput = document.getElementById("annualDate");
   const reminder = document.getElementById("annualReminder");
+
+  if (!dateInput || !reminder) {
+    alert("حدث خطأ في عناصر تاريخ البيان السنوي.");
+    return;
+  }
+
+  const date = dateInput.value;
 
   if (!date) {
     reminder.innerHTML = "⚠️ يرجى اختيار تاريخ انتهاء البيان.";
+    reminder.style.background = "#fee2e2";
     return;
   }
 
   localStorage.setItem("annualStatementDate", date);
   checkAnnualReminder();
+
+  alert("✅ تم حفظ تاريخ انتهاء البيان السنوي.");
 }
 
 function checkAnnualReminder() {
   const savedDate = localStorage.getItem("annualStatementDate");
+  const dateInput = document.getElementById("annualDate");
   const reminder = document.getElementById("annualReminder");
 
-  if (!savedDate) return;
+  if (!savedDate || !dateInput || !reminder) return;
 
-  document.getElementById("annualDate").value = savedDate;
+  dateInput.value = savedDate;
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const expiry = new Date(savedDate);
+  const expiry = new Date(savedDate + "T00:00:00");
   expiry.setHours(0, 0, 0, 0);
 
   const difference = Math.ceil(
@@ -334,31 +346,31 @@ function checkAnnualReminder() {
     reminder.innerHTML =
       "🚨 <strong>انتهى البيان السنوي!</strong><br>يرجى الدخول إلى خدمة البيان السنوي وتحديثه.";
     reminder.style.background = "#fee2e2";
-  } 
-  else if (difference === 0) {
+  } else if (difference === 0) {
     reminder.innerHTML =
       "🚨 <strong>ينتهي البيان السنوي اليوم!</strong>";
     reminder.style.background = "#fee2e2";
-  } 
-  else if (difference <= 7) {
+  } else if (difference <= 7) {
     reminder.innerHTML =
       "⚠️ <strong>تنبيه:</strong> متبقي " + difference +
       " يومًا على انتهاء البيان السنوي.";
     reminder.style.background = "#fef3c7";
-  } 
-  else if (difference <= 30) {
+  } else if (difference <= 30) {
     reminder.innerHTML =
       "🔔 <strong>تنبيه:</strong> متبقي " + difference +
       " يومًا على انتهاء البيان السنوي.";
     reminder.style.background = "#fef3c7";
-  } 
-  else {
+  } else {
     reminder.innerHTML =
       "✅ تم حفظ الموعد. متبقي " + difference +
       " يومًا على انتهاء البيان السنوي.";
     reminder.style.background = "#dcfce7";
   }
 }
+
+document.addEventListener("DOMContentLoaded", checkAnnualReminder);
+</script>
+
 <!-- إشعارات البيان السنوي -->
 <div class="card">
   <h2>🔔 إشعارات البيان السنوي</h2>
