@@ -1,27 +1,30 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>وين أراجع؟</title>
-  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <meta name="theme-color" content="#075985">
+  <meta name="description" content="وين أراجع؟ - دليلك للوصول إلى الخدمات الحكومية العراقية">  <title>وين أراجع؟</title>  <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #222;
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
     }
 
     header {
-      background: #075985;
+      background: linear-gradient(135deg, #075985, #0e7490);
       color: white;
-      padding: 25px 15px;
+      padding: 30px 15px;
       text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
     }
 
     header h1 {
       margin: 0 0 8px;
-      font-size: 30px;
+      font-size: 32px;
     }
 
     header p {
@@ -30,9 +33,43 @@
     }
 
     .container {
-      padding: 20px;
+      width: 100%;
       max-width: 700px;
       margin: auto;
+      padding: 18px;
+    }
+
+    .search-box {
+      background: white;
+      padding: 15px;
+      border-radius: 15px;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    #searchInput:focus {
+      border-color: #075985;
+    }
+
+    .clear-btn {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      margin-top: 9px;
+      background: #075985;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
     }
 
     .card {
@@ -40,558 +77,257 @@
       border-radius: 15px;
       padding: 18px;
       margin-bottom: 15px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
     }
 
     .card h2 {
       margin-top: 0;
       color: #075985;
+      font-size: 21px;
     }
 
-    
+    .card p {
+      line-height: 1.7;
+      color: #475569;
+    }
+
+    .service-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      padding: 14px;
+      margin-top: 10px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .green {
+      background: #16a34a;
+    }
+
+    .blue {
+      background: #2563eb;
+    }
+
+    .cyan {
+      background: #0891b2;
+    }
+
+    .purple {
+      background: #7c3aed;
+    }
+
+    .orange {
+      background: #ea580c;
+    }
+
+    .red {
+      background: #dc2626;
+    }
+
+    .teal {
+      background: #0f766e;
+    }
+
+    .gray {
+      background: #475569;
+    }
+
+    .sky {
+      background: #0ea5e9;
+    }
+
     .notice {
       background: #fff7ed;
       border-right: 5px solid #f97316;
     }
 
+    .notice h2 {
+      color: #c2410c;
+    }
+
+    .hidden {
+      display: none;
+    }
+
     footer {
       text-align: center;
-      padding: 20px;
-      color: #666;
+      padding: 25px 15px;
+      color: #64748b;
       font-size: 14px;
+      line-height: 1.8;
     }
-  </style>
-</head>
 
-<body>
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 27px;
+      }
 
-<header>
+      .container {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 15px;
+      }
+    }
+  </style></head><body><header>
   <h1>📍 وين أراجع؟</h1>
-  <p>دليلك للوصول إلى الخدمات الحكومية</p>
-</header>
+  <p>دليلك للوصول إلى الخدمات الحكومية العراقية</p>
+</header><div class="container">  <!-- البحث -->  <div class="search-box">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="🔎 ابحث عن خدمة..."
+      onkeyup="searchServices()"
+    ><button class="clear-btn" onclick="clearSearch()">
+  🔄 إظهار كل الخدمات
+</button>
 
-<div class="container">
-<div style="margin-bottom:20px;">
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="🔎 ابحث عن خدمة..."
-    onkeyup="searchServices()"
-    style="width:100%;box-sizing:border-box;padding:15px;
-    border:1px solid #ddd;border-radius:12px;font-size:16px;">
-
-  <button
-    onclick="clearSearch()"
-    style="width:100%;border:none;border-radius:10px;
-    padding:12px;margin-top:8px;background:#075985;
-    color:white;font-size:16px;">
-    🔄 إظهار كل الخدمات
-  </button>
-</div>
-  <div class="card">
-  <h2>🔎 الاستعلامات الحكومية المهمة</h2>
-  <p>وصول سريع إلى الخدمات الحكومية الرسمية.</p>
-
-  <a href="https://ur.gov.iq/"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#0f766e;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    🏛️ بوابة أور للخدمات الحكومية
-  </a>
-
-  <a href="https://spa.gov.iq/umbrella/search.aspx"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#2563eb;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    👨‍👩‍👧 الاستعلام عن الرعاية الاجتماعية والدفعات
-  </a>
-
-  <a href="https://spa.gov.iq/umbrella/search-annual.aspx"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#7c3aed;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    📋 البيان السنوي
-  </a>
-
-  <a href="https://spa.gov.iq/umbrella/search-address.aspx"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#0891b2;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    🏠 تحديث عنوان السكن والتحصيل الدراسي
-  </a>
-
-  <a href="https://spa.gov.iq/umbrella/search-ration.aspx"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#16a34a;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    🪪 تحديث البطاقة التموينية
-  </a>
-
-  <a href=https://ur.gov.iq/index/show-eservice/50541/10165/org
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#dc2626;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    🚗 الاستعلام عن غرامات المركبات
-  </a>
-<a href="https://play.google.com/store/apps/details?id=com.moi.ayniq"
+  </div>  <!-- الاستعلامات -->  <div class="card service-card">
+    <h2>🔎 الاستعلامات الحكومية المهمة</h2>
+    <p>وصول سريع إلى عدد من الخدمات والاستعلامات الحكومية الرسمية.</p><a class="service-btn teal"
+   href="https://ur.gov.iq/"
    target="_blank"
-   style="display:block;text-align:center;text-decoration:none;
-   background:#16a34a;color:white;padding:13px;
-   margin-top:10px;border-radius:10px;font-size:16px;">
-  📱 تحميل تطبيق عين العراق
+   rel="noopener">
+  🏛️ بوابة أور للخدمات الحكومية
 </a>
-  <a href="https://traffic.moi.gov.iq/"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#ea580c;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    🚦 مديرية المرور العامة
-  </a>
 
-  <a href="https://ur.gov.iq/index/all-services/all/"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#475569;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    📚 جميع الخدمات الحكومية
-  </a>
-</div>
-  <div class="card">
-    <h2>🪪 البطاقة الوطنية</h2>
-    <p>معلومات المراجعة وإصدار البطاقة الوطنية.</p>
-    <a 
-      href="https://ur.gov.iq/index/show-eservice/51434/16/org"
+<a class="service-btn blue"
+   href="https://spa.gov.iq/umbrella/search.aspx"
    target="_blank"
-   style="display:block;text-align:center;text-decoration:none;
-   background:#0ea5e9;color:white;padding:13px;
-   margin-top:10px;border-radius:10px;font-size:16px;">
-  🪪 فتح خدمة البطاقة الوطنية
-    </a>
-  </div>
+   rel="noopener">
+  👨‍👩‍👧 الاستعلام عن الرعاية الاجتماعية والدفعات
+</a>
 
-  <a href="https://ur.gov.iq/index/show-eservice/50541/10165/org"
+<a class="service-btn purple"
+   href="https://spa.gov.iq/umbrella/search-annual.aspx"
    target="_blank"
-   style="display:block;text-align:center;text-decoration:none;
-   background:#dc2626;color:white;padding:13px;
-   margin-top:10px;border-radius:10px;font-size:16px;">
+   rel="noopener">
+  📋 البيان السنوي
+</a>
+
+<a class="service-btn cyan"
+   href="https://spa.gov.iq/umbrella/search-address.aspx"
+   target="_blank"
+   rel="noopener">
+  🏠 تحديث عنوان السكن والتحصيل الدراسي
+</a>
+
+<a class="service-btn green"
+   href="https://spa.gov.iq/umbrella/search-ration.aspx"
+   target="_blank"
+   rel="noopener">
+  🪪 تحديث البطاقة التموينية
+</a>
+
+<a class="service-btn red"
+   href="https://ur.gov.iq/index/show-eservice/50541/10165/org"
+   target="_blank"
+   rel="noopener">
   🚗 الاستعلام عن غرامات المركبات
 </a>
-  
-  <div class="card">
-  <h2>🚘 خدمات المرور</h2>
-  <p>حجز موعد لمراجعة مديرية المرور العامة لإنجاز معاملات المركبات وإجازات السياقة.</p>
 
-  <a href="https://ur.gov.iq/index/show-eservice/51530/10032/org"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#0ea5e9;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    📅 حجز موعد المرور
-  </a>
-</div>
-<a href="https://play.google.com/store/apps/details?id=com.moi.ayniq"
+<a class="service-btn green"
+   href="https://play.google.com/store/apps/details?id=com.moi.ayniq"
    target="_blank"
-   style="display:block;text-align:center;text-decoration:none;
-   background:#16a34a;color:white;padding:13px;
-   margin-top:10px;border-radius:10px;font-size:16px;">
-  📲 تحميل تطبيق عين العراق
+   rel="noopener">
+  📱 تحميل تطبيق عين العراق
 </a>
-  < div class="card">
-  <h2>🛂 جواز السفر</h2>
-  <p>حجز موعد لإصدار الجواز الإلكتروني العراقي من خلال الخدمة الرسمية.</p>
-<a href="https://play.google.com/store/apps/details?id=com.moi.ayniq"
+
+<a class="service-btn orange"
+   href="https://traffic.moi.gov.iq/"
    target="_blank"
-   style="display:block;text-align:center;text-decoration:none;
-   background:#16a34a;color:white;padding:13px;
-   margin-top:10px;border-radius:10px;font-size:16px;">
-  📲 تحميل تطبيق عين العراق
+   rel="noopener">
+  🚦 مديرية المرور العامة
 </a>
-  <a href="https://ur.gov.iq/index/show-eservice/51660/all/elec"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#0ea5e9;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    🛂 حجز موعد إصدار الجواز الإلكتروني
-  </a>
-</div>
-<div class="card">
-  <h2>👨‍👩‍👧 الرعاية الاجتماعية</h2>
-  <p>خدمات الرعاية الاجتماعية والبيان السنوي ومتابعة حالة المستفيد.</p>
 
-  <a href="https://spa.gov.iq/umbrella/search-annual.aspx"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#0ea5e9;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    📋 البيان السنوي للرعاية الاجتماعية
-  </a>
+<a class="service-btn gray"
+   href="https://ur.gov.iq/index/all-services/all/"
+   target="_blank"
+   rel="noopener">
+  📚 جميع الخدمات الحكومية
+</a>
 
-  <a href="https://spa.gov.iq/umbrella/search.aspx"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#075985;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    🔎 فحص حالة المستفيد والدفعة
-  </a>
-</div>
+  </div>  <!-- البطاقة الوطنية -->  <div class="card service-card">
+    <h2>🪪 البطاقة الوطنية</h2>
+    <p>الوصول إلى خدمة البطاقة الوطنية عبر بوابة أور.</p><a class="service-btn sky"
+   href="https://ur.gov.iq/index/show-eservice/51434/16/org"
+   target="_blank"
+   rel="noopener">
+  🪪 فتح خدمة البطاقة الوطنية
+</a>
 
-<!-- تذكير البيان السنوي -->
-<div class="card">
-  <h2>🔔 تذكير البيان السنوي</h2>
-  <p>أدخل تاريخ انتهاء البيان السنوي ليقوم التطبيق بتذكيرك عند اقتراب الموعد.</p>
+  </div>  <!-- المرور -->  <div class="card service-card">
+    <h2>🚘 خدمات المرور</h2>
+    <p>الوصول إلى خدمات المرور وحجز المواعيد وإنجاز معاملات المركبات وإجازات السياقة.</p><a class="service-btn sky"
+   href="https://ur.gov.iq/index/show-eservice/51530/10032/org"
+   target="_blank"
+   rel="noopener">
+  📅 حجز موعد المرور
+</a>
 
-  <label for="annualDate">📅 تاريخ انتهاء البيان:</label>
+<a class="service-btn red"
+   href="https://ur.gov.iq/index/show-eservice/50541/10165/org"
+   target="_blank"
+   rel="noopener">
+  🚗 الاستعلام عن غرامات المركبات
+</a>
 
-  <input type="date"
-         id="annualDate"
-         style="width:100%;box-sizing:border-box;padding:12px;
-         margin-top:8px;border:1px solid #ccc;border-radius:10px;
-         font-size:16px;">
+<a class="service-btn orange"
+   href="https://traffic.moi.gov.iq/"
+   target="_blank"
+   rel="noopener">
+  🚦 موقع مديرية المرور العامة
+</a>
 
-  <button onclick="saveAnnualDate()"
-          style="width:100%;border:0;background:#16a34a;
-          color:white;padding:13px;margin-top:10px;
-          border-radius:10px;font-size:16px;">
-    💾 حفظ موعد التذكير
-  </button>
+  </div>  <!-- تنبيه -->  <div class="card notice">
+    <h2>ℹ️ تنبيه</h2>
+    <p>
+      تطبيق «وين أراجع؟» هو دليل للوصول إلى الخدمات والمواقع الحكومية الرسمية.
+      عند الضغط على أحد الأزرار قد يتم فتح الموقع الرسمي للجهة الحكومية.
+    </p>
+  </div></div><footer>
+  <strong>📍 وين أراجع؟</strong><br>
+  دليلك للوصول إلى الخدمات الحكومية العراقية<br>
+  الإصدار الأول
+</footer><script>
 
-  <div id="annualReminder"
-       style="margin-top:12px;padding:12px;border-radius:10px;
-       background:#f1f5f9;text-align:center;">
-    لم يتم تحديد موعد انتهاء البيان بعد.
-  </div>
-</div>
-
-<!-- خدمات إضافية -->
-<div class="card">
-  <h2>🧑‍💼 خدمات إضافية للرعاية الاجتماعية</h2>
-  <p>الوصول السريع إلى خدمات ومعلومات المستفيدين.</p>
-
-  <a href="https://spa.gov.iq/"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#16a34a;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    🏛️ موقع هيئة الحماية الاجتماعية
-  </a>
-
-  <a href="https://spa.gov.iq/umbrella/search.aspx"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#2563eb;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    🔍 الاستعلام عن حالة المستفيد
-  </a>
-
-  <a href="https://spa.gov.iq/umbrella/search-annual.aspx"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#7c3aed;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    📋 متابعة البيان السنوي
-  </a>
-</div>
-
-
-<script>
-function saveAnnualDate() {
-  const dateInput = document.getElementById("annualDate");
-  const reminder = document.getElementById("annualReminder");
-
-  if (!dateInput || !reminder) {
-    alert("حدث خطأ في عناصر تاريخ البيان السنوي.");
-    return;
-  }
-
-  const date = dateInput.value;
-
-  if (!date) {
-    reminder.innerHTML = "⚠️ يرجى اختيار تاريخ انتهاء البيان.";
-    reminder.style.background = "#fee2e2";
-    return;
-  }
-
-  localStorage.setItem("annualStatementDate", date);
-  checkAnnualReminder();
-
-  alert("✅ تم حفظ تاريخ انتهاء البيان السنوي.");
-}
-
-function checkAnnualReminder() {
-  const savedDate = localStorage.getItem("annualStatementDate");
-  const dateInput = document.getElementById("annualDate");
-  const reminder = document.getElementById("annualReminder");
-
-  if (!savedDate || !dateInput || !reminder) return;
-
-  dateInput.value = savedDate;
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  const expiry = new Date(savedDate + "T00:00:00");
-  expiry.setHours(0, 0, 0, 0);
-
-  const difference = Math.ceil(
-    (expiry - today) / (1000 * 60 * 60 * 24)
-  );
-
-  if (difference < 0) {
-    reminder.innerHTML =
-      "🚨 <strong>انتهى البيان السنوي!</strong><br>يرجى الدخول إلى خدمة البيان السنوي وتحديثه.";
-    reminder.style.background = "#fee2e2";
-  } else if (difference === 0) {
-    reminder.innerHTML =
-      "🚨 <strong>ينتهي البيان السنوي اليوم!</strong>";
-    reminder.style.background = "#fee2e2";
-  } else if (difference <= 7) {
-    reminder.innerHTML =
-      "⚠️ <strong>تنبيه:</strong> متبقي " + difference +
-      " يومًا على انتهاء البيان السنوي.";
-    reminder.style.background = "#fef3c7";
-  } else if (difference <= 30) {
-    reminder.innerHTML =
-      "🔔 <strong>تنبيه:</strong> متبقي " + difference +
-      " يومًا على انتهاء البيان السنوي.";
-    reminder.style.background = "#fef3c7";
-  } else {
-    reminder.innerHTML =
-      "✅ تم حفظ الموعد. متبقي " + difference +
-      " يومًا على انتهاء البيان السنوي.";
-    reminder.style.background = "#dcfce7";
-  }
-}
-
-document.addEventListener("DOMContentLoaded", checkAnnualReminder);
-</script>
-
-<!-- إشعارات البيان السنوي -->
-<div class="card">
-  <h2>🔔 إشعارات البيان السنوي</h2>
-  <p>فعّل الإشعارات ليصلك تنبيه عند اقتراب انتهاء البيان السنوي.</p>
-
-  <button onclick="enableAnnualNotifications()"
-          style="width:100%;border:0;background:#f59e0b;
-          color:white;padding:13px;margin-top:10px;
-          border-radius:10px;font-size:16px;">
-    🔔 تفعيل إشعارات البيان السنوي
-  </button>
-
-  <button onclick="testAnnualNotification()"
-          style="width:100%;border:0;background:#0ea5e9;
-          color:white;padding:13px;margin-top:10px;
-          border-radius:10px;font-size:16px;">
-    🧪 اختبار الإشعار الآن
-  </button>
-
-  <div id="notificationStatus"
-       style="margin-top:12px;padding:10px;border-radius:10px;
-       background:#f1f5f9;text-align:center;">
-    الإشعارات غير مفعلة بعد.
-  </div>
-</div>
-
-<script>
- async function enableAnnualNotifications() {
-  try {
-    if (!("Notification" in window)) {
-      alert("⚠️ هاتفك أو المتصفح لا يدعم الإشعارات.");
-      return;
-    }
-
-    const permission = await Notification.requestPermission();
-
-    if (permission === "granted") {
-      localStorage.setItem("annualNotifications", "enabled");
-
-      new Notification("🔔 وين أراجع؟", {
-        body: "تم تفعيل تذكير البيان السنوي بنجاح."
-      });
-
-      alert("✅ تم تفعيل إشعارات البيان السنوي بنجاح.");
-    } else {
-      alert("⚠️ لم يتم السماح بالإشعارات. افتح إعدادات المتصفح واسمح بالإشعارات للموقع.");
-    }
-  } catch (error) {
-    console.error(error);
-    alert("❌ حدث خطأ أثناء تفعيل الإشعارات.");
-  }
-}
-  const status = document.getElementById("notificationStatus");
-
-  if (!("Notification" in window)) {
-    status.innerHTML = "❌ هذا المتصفح لا يدعم الإشعارات.";
-    return;
-  }
-
-  const permission = await Notification.requestPermission();
-
-  if (permission === "granted") {
-    status.innerHTML = "✅ تم تفعيل الإشعارات على هذا الجهاز.";
-  } else {
-    status.innerHTML = "⚠️ لم يتم السماح بالإشعارات.";
-  }
-}
-
-async function testAnnualNotification() {
-  const status = document.getElementById("notificationStatus");
-
-  if (!("Notification" in window)) {
-    status.innerHTML = "❌ المتصفح لا يدعم الإشعارات.";
-    return;
-  }
-
-  if (Notification.permission !== "granted") {
-    status.innerHTML =
-      "⚠️ اضغط أولًا على «تفعيل إشعارات البيان السنوي».";
-    return;
-  }
-
-  try {
-    const registration = await navigator.serviceWorker.ready;
-
-    await registration.showNotification(
-      "🔔 وين أراجع؟",
-      {
-        body: "هذا إشعار تجريبي للبيان السنوي. الإشعارات تعمل بنجاح.",
-        icon: "./icon-192.png",
-        badge: "./icon-192.png"
-      }
-    );
-
-    status.innerHTML = "✅ تم إرسال الإشعار التجريبي.";
-  } catch (error) {
-    status.innerHTML = "❌ تعذر إرسال الإشعار التجريبي.";
-    console.error(error);
-  }
-}
-<script>
-document.addEventListener("DOMContentLoaded", checkAnnualReminder);
-</script>
-  <h2>💰 المتقاعدون</h2>
-  <p>خدمات المتقاعدين الرسمية وإثبات الحياة والاستعلام عن الراتب التقاعدي.</p>
-
-  <a href="https://ur.gov.iq/index/show-eservice/51249/10044/org"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#0ea5e9;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    👤 خدمات المتقاعدين وإثبات الحياة
-  </a>
-
-  <a href="https://ur.gov.iq/index/show-eservice/51047/all/manual"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#075985;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    📄 تأييد الراتب التقاعدي
-  </a>
-</div>
-<div class="card">
-  <h2>👷 العاطلون عن العمل</h2>
-  <p>التسجيل كباحث عن عمل ومتابعة الوظائف والتدريب والخدمات الخاصة بوزارة العمل.</p>
-
-  <a href="https://ur.gov.iq/index/show-eservice/50467/all/all"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#0ea5e9;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    💼 منصة مِهَن للباحثين عن عمل
-  </a>
-
-  <a href="https://ur.gov.iq/index/show-eservice/51422/10040/org"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#075985;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    💰 قروض ودعم المشاريع للباحثين عن عمل
-  </a>
-</div>
-
-  <div class="card notice">
-  <h2>🔔 آخر التنبيهات الحكومية</h2>
-
-  <p>تابع هنا أهم الإعلانات والخدمات الحكومية الرسمية.</p>
-
-  <a href="https://ur.gov.iq/"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#0ea5e9;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    🏛️ بوابة أور للخدمات الحكومية
-  </a>
-
-  <a href="https://spa.gov.iq/umbrella/search.aspx"
-     target="_blank"
-     style="display:block;text-align:center;text-decoration:none;
-     background:#075985;color:white;padding:13px;
-     margin-top:10px;border-radius:10px;font-size:16px;">
-    👨‍👩‍👧 متابعة الرعاية الاجتماعية
-  </a>
-</div>
-
-</div>
-
-<footer>
-  © 2026 وين أراجع؟ — دليل الخدمات الحكومية
-</footer>
-<script>
 function searchServices() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
+
+  const input = document.getElementById("searchInput");
+  const searchText = input.value.toLowerCase().trim();
+
+  const cards = document.querySelectorAll(".service-card");
 
   cards.forEach(function(card) {
+
     const text = card.innerText.toLowerCase();
 
-    if (text.includes(input)) {
-      card.style.display = "";
+    if (text.includes(searchText)) {
+      card.classList.remove("hidden");
     } else {
-      card.style.display = "none";
+      card.classList.add("hidden");
     }
-  });
-}
-</script>
-</body>
-<script>
-function searchServices() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
 
-  cards.forEach(function(card) {
-    const text = card.innerText.toLowerCase();
-
-    if (text.includes(input)) {
-      card.style.display = "";
-    } else {
-      card.style.display = "none";
-    }
   });
+
 }
-  function clearSearch() {
+
+function clearSearch() {
+
   document.getElementById("searchInput").value = "";
 
-  document.querySelectorAll(".card").forEach(function(card) {
-    card.style.display = "";
-  });
-  }
-</script>
-  <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => console.log("تم تشغيل نظام الإشعارات"))
-      .catch(error => console.error("فشل تشغيل الإشعارات:", error));
-  });
-}
-  </script>
+  const cards = document.querySelectorAll(".service-card");
 
-</body>
-</html>
-  
+  cards.forEach(function(card) {
+    card.classList.remove("hidden");
+  });
+
+}
+
+</script></body>
 </html>
