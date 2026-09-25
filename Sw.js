@@ -1,26 +1,19 @@
-self.addEventListener("install", event => {
+const CACHE_NAME = "wen-araje-v7-retiree";
+const urlsToCache = ["/", "/index.html", "/manifest.json"];
+
+self.addEventListener("install", e => {
+  e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(urlsToCache)));
   self.skipWaiting();
 });
 
-self.addEventListener("activate", event => {
-  event.waitUntil(self.clients.claim());
+self.addEventListener("activate", e => {
+  e.waitUntil(
+    caches.keys().then(keys => {
+      return Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)));
+    })
+  );
 });
 
-self.addEventListener("notificationclick", event => {
-  event.notification.close();
-
-  event.waitUntil(
-    clients.matchAll({ type: "window", includeUncontrolled: true })
-      .then(clientList => {
-        for (const client of clientList) {
-          if ("focus" in client) {
-            return client.focus();
-          }
-        }
-
-        if (clients.openWindow) {
-          return clients.openWindow("/");
-        }
-      })
-  );
+self.addEventListener("fetch", e => {
+  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
 });
