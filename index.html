@@ -166,5 +166,7 @@ function checkRetiree(){const s=localStorage.getItem('retireeDate');if(!s)return
 
 let map=L.map('map').setView([33.3152,44.3661],11);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);L.marker([33.3051,44.3672]).addTo(map).bindPopup('التقاعد - الكرادة');
 </script>
+<link rel="manifest" href="/manifest.json">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
 </body>
 </html>
