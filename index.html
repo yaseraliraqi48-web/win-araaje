@@ -386,7 +386,31 @@ function checkAnnualReminder() {
 </div>
 
 <script>
-async function enableAnnualNotifications() {
+ async function enableAnnualNotifications() {
+  try {
+    if (!("Notification" in window)) {
+      alert("⚠️ هاتفك أو المتصفح لا يدعم الإشعارات.");
+      return;
+    }
+
+    const permission = await Notification.requestPermission();
+
+    if (permission === "granted") {
+      localStorage.setItem("annualNotifications", "enabled");
+
+      new Notification("🔔 وين أراجع؟", {
+        body: "تم تفعيل تذكير البيان السنوي بنجاح."
+      });
+
+      alert("✅ تم تفعيل إشعارات البيان السنوي بنجاح.");
+    } else {
+      alert("⚠️ لم يتم السماح بالإشعارات. افتح إعدادات المتصفح واسمح بالإشعارات للموقع.");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("❌ حدث خطأ أثناء تفعيل الإشعارات.");
+  }
+}
   const status = document.getElementById("notificationStatus");
 
   if (!("Notification" in window)) {
