@@ -1,8 +1,8 @@
 {
-  "name": "وين أراجع؟",
+  "name": "وين أراجع",
   "short_name": "وين أراجع",
   "description": "دليل المتقاعدين والخدمات الحكومية العراقية",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#075985",
   "theme_color": "#075985",
@@ -14,6 +14,15 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/854/854878.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "دليل المتقاعدين"
     }
   ]
 }
