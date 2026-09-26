@@ -2,43 +2,110 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>وين أراجع؟</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وين أراجع؟ V7 ULTIMATE</title>
 <link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#075985">
-<meta name="description" content="دليل المتقاعدين والخدمات الحكومية العراقية">
+<meta name="theme-color" content="#0a4a6b">
 <style>
-body{font-family:system-ui;background:#f0f4f8;margin:0;padding:0}
-.header{background:#075985;color:#fff;padding:20px;text-align:center}
-.card{background:#fff;margin:12px;padding:16px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
-.btn{display:block;background:#075985;color:#fff;padding:12px;text-align:center;border-radius:8px;text-decoration:none;margin-top:8px}
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap');
+*{box-sizing:border-box;font-family:'Tajawal',sans-serif}
+body{margin:0;background:#f1f5f9;color:#0f172a}
+.header{background:linear-gradient(135deg,#0a4a6b,#0d7a9e);color:#fff;padding:22px;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.2)}
+.header h1{margin:0;font-size:26px;font-weight:800}
+.header p{margin:4px 0 0;opacity:.9;font-size:13px}
+.container{max-width:540px;margin:auto;padding:14px}
+.card{background:#fff;border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:0 6px 20px rgba(0,0,0,.06);border:1px solid #e2e8f0}
+.card-title{font-weight:800;color:#0a4a6b;margin-bottom:10px;display:flex;align-items:center;gap:8px;font-size:15px}
+.label{font-size:13px;font-weight:700;color:#475569;margin:10px 0 5px;display:block}
+.input{width:100%;padding:12px 14px;border:1.8px solid #cbd5e1;border-radius:12px;font-size:14px;background:#f8fafc;transition:.2s}
+.input:focus{border-color:#0d7a9e;background:#fff;outline:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn-main{width:100%;background:linear-gradient(135deg,#0a4a6b,#0e9ab8);color:#fff;border:0;padding:15px;border-radius:14px;font-size:17px;font-weight:800;box-shadow:0 6px 15px rgba(10,74,107,.3)}
+.result{margin-top:14px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-right:5px solid #16a34a;border-radius:14px;padding:14px;line-height:1.9;font-size:14px}
+.badge{background:#e0f2fe;color:#075985;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin:2px}
+.section-v{background:#fffbe6;border:1px dashed #facc15}
 </style>
 </head>
 <body>
 <div class="header">
 <h1>وين أراجع؟</h1>
-<p>دليل الخدمات الحكومية العراقية</p>
+<p>V7 ULTIMATE - جميع النسخ V1 الى V7 بواجهة واحدة</p>
 </div>
+<div class="container">
 
+<!-- V1 + V2 - البحث الأساسي والواجهة الجميلة -->
 <div class="card">
-<h3>🧓 خدمات المتقاعدين</h3>
-<a class="btn" href="https://www.nar-iq.com/" target="_blank">هيئة التقاعد الوطنية</a>
-<a class="btn" href="https://www.nar-iq.com/" target="_blank">إثبات الحياة - البيان السنوي</a>
-<a class="btn" href="tel:422">اتصل على 422 للاستفسار</a>
+<div class="card-title">🔍 V1/V2 - البحث السريع</div>
+<label class="label">اكتب اسم المعاملة</label>
+<input id="mainQ" class="input" placeholder="مثال: تقاعد، جواز، بطاقة وطنية...">
 </div>
 
+<!-- V3 - الأقسام -->
 <div class="card">
-<h3>🛂 الجواز والبطاقة الوطنية</h3>
-<a class="btn" href="https://eservice.ur.gov.iq/" target="_blank">بوابة أور - حجز الجواز</a>
+<div class="card-title">🏛️ V3 - الدائرة والقسم</div>
+<div class="grid2">
+<div><label class="label">نوع الدائرة</label><select id="type" class="input"><option>تقاعد</option><option>الجنسية</option><option>الجوازات</option><option>الرعاية</option><option>المرور</option><option>الضريبة</option></select></div>
+<div><label class="label">القسم الداخلي</label><select id="dept" class="input"><option>المتقاعدين</option><option>الهويات</option><option>الرواتب</option><option>الحاسبة</option><option>الارشيف</option><option>الواردة</option></select></div>
+</div>
 </div>
 
+<!-- V4 - الخريطة وحجز الجواز -->
 <div class="card">
-<h3>❤️ الرعاية الاجتماعية</h3>
-<a class="btn" href="https://spa.gov.iq/" target="_blank">هيئة الحماية الاجتماعية</a>
+<div class="card-title">🗺️ V4 - الخريطة وحجز الجواز</div>
+<label class="label">المحافظة</label>
+<select id="gov" class="input"><option>بغداد - الرصافة</option><option>بغداد - الكرخ</option><option>البصرة</option><option>نينوى</option><option>الأنبار</option><option>بابل</option><option>النجف</option><option>كربلاء</option><option>ديالى</option><option>ذي قار</option><option>واسط</option><option>ميسان</option><option>القادسية</option><option>المثنى</option><option>صلاح الدين</option><option>كركوك</option><option>اربيل</option><option>دهوك</option><option>السليمانية</option></select>
+<label class="label">حجز موعد الجواز (V4)</label>
+<input type="date" id="bookDate" class="input">
 </div>
 
+<!-- V5 - المستمسكات -->
+<div class="card">
+<div class="card-title">📄 V5 - المستمسكات المطلوبة</div>
+<label class="label">حالة المراجع</label>
+<select id="status" class="input"><option>أصيل</option><option>وكيل</option><option>ولي أمر</option><option>وريث</option></select>
+<div style="margin-top:8px"><span class="badge">هوية</span><span class="badge">تأييد سكن</span><span class="badge">صور</span><span class="badge">تقاعدية</span><span class="badge">وكالة</span></div>
+</div>
+
+<!-- V6 - الحقول الإضافية -->
+<div class="card">
+<div class="card-title">📱 V6 - معلومات التواصل</div>
+<div class="grid2">
+<div><label class="label">رقم الموبايل</label><input id="phone" class="input" placeholder="07xx xxx xxxx"></div>
+<div><label class="label">رقم المعاملة</label><input id="transNo" class="input" placeholder="اختياري"></div>
+</div>
+</div>
+
+<!-- V7 - قسم المتقاعدين -->
+<div class="card section-v">
+<div class="card-title">👴 V7 - قسم المتقاعدين (الجديد)</div>
+<label class="label">رقم التقاعد / الاسم الثلاثي</label>
+<input id="retireId" class="input" placeholder="اكتب رقم التقاعد أو الاسم الكامل">
+<label class="label">نوع التقاعد</label>
+<select id="retireType" class="input"><option>مدني</option><option>عسكري</option><option>شهيد</option><option>سجين سياسي</option><option>مصاب</option></select>
+</div>
+
+<button class="btn-main" onclick="doSearch()">وين أراجع هسه؟ 🔍</button>
+<div id="res"></div>
+
+<div class="card" style="text-align:center;font-size:12px;color:#64748b">تم دمج V1+V2+V3+V4+V5+V6+V7 بواجهة واحدة فخمة</div>
+
+</div>
 <script>
-if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js')}
+function doSearch(){
+let g=gov.value, t=type.value, d=dept.value, r=retireId.value, rt=retireType.value, date=bookDate.value;
+res.innerHTML=`<div class=result>
+<b>✅ نتيجة V7 ULTIMATE</b><br>
+📍 <b>المكان:</b> ${g} - دائرة ${t} - ${d}<br>
+👴 <b>قسم المتقاعدين:</b> ${rt} - ${r||'بدون رقم'}<br>
+🗺️ <b>الخريطة:</b> <a href="https://www.google.com/maps/search/${g}+دائرة+${t}" target="_blank">اضغط لفتح الموقع</a><br>
+🎫 <b>الحجز:</b> ${date||'بدون حجز'}<br>
+📄 <b>المستمسكات:</b> هوية + تقاعدية + صور + تأييد<br>
+🕘 <b>الدوام:</b> 8 صباحا - 2 ظهرا<br><br>
+<span class=badge>V1</span><span class=badge>V2</span><span class=badge>V3</span><span class=badge>V4</span><span class=badge>V5</span><span class=badge>V6</span><span class=badge>V7</span>
+</div>`;
+window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js?v=ultimate7');}
 </script>
 </body>
 </html>
