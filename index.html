@@ -1,160 +1,633 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#075985">
-<title>وين أراجع؟ V8.1 الرعاية الشامل</title>
-<link rel="manifest" href="./manifest.json">
-<style>
-:root{--bg:#f1f5f9;--card:#fff;--text:#172033;--main:#075985;--accent:#0891b2;--border:#e2e8f0}
-.dark{--bg:#0f172a;--card:#1e293b;--text:#e2e8f0;--main:#0ea5e9;--border:#334155}
-*{box-sizing:border-box}body{margin:0;font-family:Tahoma;background:var(--bg);color:var(--text);transition:.3s}
-header{background:linear-gradient(135deg,var(--main),var(--accent));color:#fff;padding:28px 18px;text-align:center;border-radius:0 0 28px 28px;position:relative}
-header h1{margin:0;font-size:28px} #darkToggle{position:absolute;left:14px;top:14px;background:rgba(255,255,255,.2);border:0;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer}
-.container{max-width:760px;margin:auto;padding:14px}
-.input{width:100%;padding:12px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text);margin-top:6px}
-.card{background:var(--card);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 4px 14px rgba(0,0,0,.07)}
-.card h2{margin:0 0 10px;color:var(--main);font-size:18px}
-.btn{width:100%;border:0;padding:13px;border-radius:12px;font-weight:bold;color:#fff;margin-top:8px;cursor:pointer}
-.green{background:#16a34a}.blue{background:#2563eb}.orange{background:#ea580c}.teal{background:#0f766e}.sky{background:#0284c7}.purple{background:#7c3aed}.red{background:#dc2626}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.map-frame{width:100%;height:250px;border:0;border-radius:12px;margin-top:8px}
-.badge{display:inline-block;background:#e0f2fe;color:#075985;padding:4px 10px;border-radius:20px;font-size:11px;margin:2px}
-.status-paid{background:#dcfce7;color:#166534}.status-wait{background:#fef3c7;color:#92400e}
-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}th,td{border:1px solid var(--border);padding:8px;text-align:center;border-radius:6px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#075985">
+  <meta name="description" content="وين أراجع؟ - دليلك للوصول إلى الخدمات الحكومية العراقية">
+
+  <title>وين أراجع؟</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f1f5f9;
+      color: #172033;
+    }
+
+    header {
+      background: linear-gradient(135deg, #075985, #0891b2);
+      color: white;
+      padding: 32px 18px 38px;
+      text-align: center;
+      border-radius: 0 0 28px 28px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.15);
+    }
+
+    header .logo {
+      font-size: 48px;
+      margin-bottom: 5px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      font-size: 16px;
+      opacity: .95;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    .search-box {
+      background: white;
+      padding: 15px;
+      border-radius: 18px;
+      margin-top: -22px;
+      margin-bottom: 18px;
+      position: relative;
+      box-shadow: 0 5px 18px rgba(15,23,42,.10);
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 16px 18px;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      font-size: 17px;
+      outline: none;
+      direction: rtl;
+    }
+
+    #searchInput:focus {
+      border-color: #0891b2;
+    }
+
+    .clear-btn {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 13px;
+      margin-top: 10px;
+      background: #e2e8f0;
+      color: #334155;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .section-title {
+      margin: 22px 4px 12px;
+      font-size: 21px;
+      color: #0f172a;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(15,23,42,.07);
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      color: #075985;
+      font-size: 20px;
+    }
+
+    .card p {
+      line-height: 1.8;
+      color: #64748b;
+      margin: 8px 0;
+    }
+
+    .service-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      padding: 14px;
+      margin-top: 10px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: transform .15s, opacity .15s;
+    }
+
+    .service-btn:active {
+      transform: scale(.98);
+      opacity: .9;
+    }
+
+    .green { background: #16a34a; }
+    .blue { background: #2563eb; }
+    .cyan { background: #0891b2; }
+    .purple { background: #7c3aed; }
+    .orange { background: #ea580c; }
+    .red { background: #dc2626; }
+    .teal { background: #0f766e; }
+    .gray { background: #475569; }
+    .sky { background: #0284c7; }
+
+    .notice {
+      background: #fff7ed;
+      border-right: 5px solid #f97316;
+    }
+
+    .notice h2 {
+      color: #c2410c;
+    }
+
+    .date-input {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 16px;
+    }
+
+    .save-date {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 10px;
+      background: #f97316;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .quick-card {
+      background: white;
+      border-radius: 17px;
+      padding: 17px 10px;
+      text-align: center;
+      text-decoration: none;
+      color: #172033;
+      box-shadow: 0 4px 14px rgba(15,23,42,.07);
+      font-weight: bold;
+    }
+
+    .quick-icon {
+      font-size: 31px;
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .no-results {
+      display: none;
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px 35px;
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      header .logo {
+        font-size: 42px;
+      }
+
+      .container {
+        padding: 12px;
+      }
+
+      .quick-grid {
+        gap: 9px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
 <header>
-<button id="darkToggle" onclick="toggleDark()">🌙 ليلي</button>
-<div style="font-size:42px">📍</div>
-<h1>وين أراجع؟ V8.1</h1>
-<p>دليل المتقاعد + الرعاية الاجتماعية الشامل</p>
+  <div class="logo">📍</div>
+  <h1>وين أراجع؟</h1>
+  <p>دليلك للوصول إلى الخدمات الحكومية العراقية</p>
 </header>
+
 <div class="container">
 
-<!-- قسم المتقاعدين V7 -->
-<div class="card">
-<h2>👴 قسم المتقاعدين</h2>
-<div class="grid2">
-<select id="retireType" class="input"><option>مدني</option><option>عسكري</option><option>شهداء</option><option>وريث</option></select>
-<select id="gov" class="input" onchange="updateMaps()"><option>بغداد - الرصافة</option><option>بغداد - الكرخ</option><option>البصرة</option><option>نينوى</option><option>الأنبار</option><option>بابل</option><option>النجف</option><option>كربلاء</option><option>ديالى</option><option>ذي قار</option><option>واسط</option><option>ميسان</option></select>
+  <!-- البحث -->
+  <div class="search-box">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="🔎 ابحث عن خدمة مثل: بطاقة، مرور، رعاية..."
+      oninput="searchServices()"
+    >
+
+    <button class="clear-btn" onclick="clearSearch()">
+      🔄 إظهار جميع الخدمات
+    </button>
+  </div>
+
+  <div id="noResults" class="no-results">
+    🔍 لم نجد خدمة مطابقة للبحث.
+  </div>
+
+  <!-- الوصول السريع -->
+  <h2 class="section-title">⚡ الوصول السريع</h2>
+
+  <div class="quick-grid">
+
+    <a class="quick-card" href="https://ur.gov.iq/" target="_blank" rel="noopener">
+      <span class="quick-icon">🏛️</span>
+      بوابة أور
+    </a>
+
+    <a class="quick-card" href="https://ur.gov.iq/index/show-eservice/51434/16/org" target="_blank" rel="noopener">
+      <span class="quick-icon">🪪</span>
+      البطاقة الوطنية
+    </a>
+
+    <a class="quick-card" href="https://ur.gov.iq/index/show-eservice/50541/10165/org" target="_blank" rel="noopener">
+      <span class="quick-icon">🚗</span>
+      غرامات المركبات
+    </a>
+
+    <a class="quick-card" href="https://spa.gov.iq/umbrella/search.aspx" target="_blank" rel="noopener">
+      <span class="quick-icon">👨‍👩‍👧</span>
+      الرعاية الاجتماعية
+    </a>
+
+  </div>
+
+  <!-- البيان السنوي -->
+  <div class="card notice service-card">
+
+    <h2>🔔 تذكير البيان السنوي</h2>
+
+    <p>
+      احفظ تاريخ آخر تحديث للبيان السنوي،
+      وسيحسب التطبيق الموعد التقريبي القادم ويعرض لك التنبيه.
+    </p>
+
+    <label for="annualDate">
+      📅 تاريخ آخر تحديث:
+    </label>
+
+    <input
+      type="date"
+      id="annualDate"
+      class="date-input"
+    >
+
+    <button class="save-date" onclick="saveAnnualDate()">
+      💾 حفظ التاريخ
+    </button>
+
+    <p id="annualMessage"></p>
+
+    <a
+      class="service-btn purple"
+      href="https://spa.gov.iq/umbrella/search-annual.aspx"
+      target="_blank"
+      rel="noopener"
+    >
+      📋 فتح البيان السنوي الرسمي
+    </a>
+
+  </div>
+
+  <!-- الاستعلامات -->
+  <div class="card service-card">
+
+    <h2>🔎 الاستعلامات الحكومية</h2>
+
+    <p>
+      مجموعة من الروابط للوصول السريع إلى الخدمات والاستعلامات الحكومية.
+    </p>
+
+    <a class="service-btn teal"
+       href="https://ur.gov.iq/"
+       target="_blank"
+       rel="noopener">
+      🏛️ بوابة أور للخدمات الحكومية
+    </a>
+
+    <a class="service-btn blue"
+       href="https://spa.gov.iq/umbrella/search.aspx"
+       target="_blank"
+       rel="noopener">
+      👨‍👩‍👧 الاستعلام عن الرعاية الاجتماعية والدفعات
+    </a>
+
+    <a class="service-btn purple"
+       href="https://spa.gov.iq/umbrella/search-annual.aspx"
+       target="_blank"
+       rel="noopener">
+      📋 البيان السنوي
+    </a>
+
+    <a class="service-btn cyan"
+       href="https://spa.gov.iq/umbrella/search-address.aspx"
+       target="_blank"
+       rel="noopener">
+      🏠 تحديث عنوان السكن والتحصيل الدراسي
+    </a>
+
+    <a class="service-btn green"
+       href="https://spa.gov.iq/umbrella/search-ration.aspx"
+       target="_blank"
+       rel="noopener">
+      🪪 تحديث البطاقة التموينية
+    </a>
+
+    <a class="service-btn red"
+       href="https://ur.gov.iq/index/show-eservice/50541/10165/org"
+       target="_blank"
+       rel="noopener">
+      🚗 الاستعلام عن غرامات المركبات
+    </a>
+
+    <a class="service-btn green"
+       href="https://play.google.com/store/apps/details?id=com.moi.ayniq"
+       target="_blank"
+       rel="noopener">
+      📱 تحميل تطبيق عين العراق
+    </a>
+
+    <a class="service-btn orange"
+       href="https://traffic.moi.gov.iq/"
+       target="_blank"
+       rel="noopener">
+      🚦 مديرية المرور العامة
+    </a>
+
+    <a class="service-btn gray"
+       href="https://ur.gov.iq/index/all-services/all/"
+       target="_blank"
+       rel="noopener">
+      📚 جميع الخدمات الحكومية
+    </a>
+
+  </div>
+
+  <!-- البطاقة الوطنية -->
+  <div class="card service-card">
+
+    <h2>🪪 البطاقة الوطنية</h2>
+
+    <p>
+      الوصول السريع إلى خدمة البطاقة الوطنية عبر بوابة أور.
+    </p>
+
+    <a class="service-btn sky"
+       href="https://ur.gov.iq/index/show-eservice/51434/16/org"
+       target="_blank"
+       rel="noopener">
+      🪪 فتح خدمة البطاقة الوطنية
+    </a>
+
+  </div>
+
+  <!-- المرور -->
+  <div class="card service-card">
+
+    <h2>🚘 خدمات المرور</h2>
+
+    <p>
+      الوصول إلى خدمات المرور وحجز المواعيد وإنجاز معاملات المركبات وإجازات السياقة.
+    </p>
+
+    <a class="service-btn sky"
+       href="https://ur.gov.iq/index/show-eservice/51530/10032/org"
+       target="_blank"
+       rel="noopener">
+      📅 حجز موعد المرور
+    </a>
+
+    <a class="service-btn red"
+       href="https://ur.gov.iq/index/show-eservice/50541/10165/org"
+       target="_blank"
+       rel="noopener">
+      🚗 الاستعلام عن غرامات المركبات
+    </a>
+
+    <a class="service-btn orange"
+       href="https://traffic.moi.gov.iq/"
+       target="_blank"
+       rel="noopener">
+      🚦 موقع مديرية المرور العامة
+    </a>
+
+  </div>
+
+  <!-- تنبيه -->
+  <div class="card notice">
+
+    <h2>ℹ️ تنبيه مهم</h2>
+
+    <p>
+      تطبيق «وين أراجع؟» هو دليل للوصول إلى الخدمات والمواقع الحكومية الرسمية.
+      عند الضغط على أحد الأزرار قد يتم فتح الموقع الرسمي للجهة الحكومية.
+    </p>
+
+  </div>
+
 </div>
-<input id="retireId" class="input" placeholder="رقم التقاعد / الاسم">
-<iframe id="mapRetire" class="map-frame" src="https://www.google.com/maps?q=دائرة+التقاعد+بغداد&z=13&output=embed"></iframe>
-<button class="btn" style="background:linear-gradient(135deg,#16a34a,#0d9488)" onclick="wadini('تقاعد')">🚗 وديني لدائرة التقاعد</button>
-</div>
 
-<!-- قسم الرعاية الاجتماعية الشامل الجديد V8.1 -->
-<div class="card" style="border:2px solid #16a34a">
-<h2>👨‍👩‍👧 الرعاية الاجتماعية الشامل - V8.1 الجديد</h2>
+<footer>
+  <strong>📍 وين أراجع؟</strong><br>
+  دليلك للوصول إلى الخدمات الحكومية العراقية<br>
+  الإصدار الأول
+</footer>
 
-<label>🔍 البحث عن اسمك في الرعاية</label>
-<input id="riayaName" class="input" placeholder="اكتب الاسم الرباعي">
-<input id="riayaCard" class="input" placeholder="رقم البطاقة التموينية (اختياري)" style="margin-top:6px">
-<button class="btn green" onclick="searchRiaya()">🔎 ابحث عن شمولي</button>
-<p id="riayaRes" style="font-size:13px;margin-top:8px"></p>
-
-<hr style="border:0;border-top:1px solid var(--border);margin:12px 0">
-
-<label>💰 متتبع الدفعات - الوجبات</label>
-<table>
-<tr><th>الوجبة</th><th>الحالة</th><th>المبلغ</th></tr>
-<tr><td>الأولى</td><td><span class="badge status-paid">تم الدفع</span></td><td>105,000</td></tr>
-<tr><td>الثانية</td><td><span class="badge status-paid">تم الدفع</span></td><td>105,000</td></tr>
-<tr><td>الثالثة</td><td><span class="badge status-wait">بانتظار</span></td><td>-</td></tr>
-<tr><td>الرابعة</td><td><span class="badge status-wait">قادمة</span></td><td>-</td></tr>
-</table>
-<div class="grid2" style="margin-top:8px">
-<input type="date" id="lastPay" class="input" onchange="savePayDate()">
-<button class="btn teal" onclick="savePayDate()">💾 حفظ آخر دفعة</button>
-</div>
-<p id="payMsg" style="font-size:12px;color:#16a34a"></p>
-
-<hr style="border:0;border-top:1px solid var(--border);margin:12px 0">
-
-<label>🗺️ خريطة منافذ الكي كارد - الرعاية</label>
-<iframe id="mapRiaya" class="map-frame" src="https://www.google.com/maps?q=منافذ+الكي+كارد+بغداد&z=13&output=embed"></iframe>
-<button class="btn" style="background:linear-gradient(135deg,#2563eb,#0ea5e9)" onclick="wadini('كي كارد')">🚗 وديني لأقرب منفذ صرف</button>
-
-<hr style="border:0;border-top:1px solid var(--border);margin:12px 0">
-
-<label>📄 مولد الاستمارة والتعهد</label>
-<input id="fullName" class="input" placeholder="الاسم الرباعي للاستمارة">
-<input id="motherName" class="input" placeholder="اسم الأم الثلاثي" style="margin-top:6px">
-<button class="btn orange" onclick="generateForm()">📄 توليد الاستمارة للطباعة</button>
-<div id="formPreview" style="display:none;background:var(--bg);padding:10px;border-radius:10px;margin-top:8px;font-size:12px;line-height:1.8"></div>
-<button id="printBtn" class="btn purple" style="display:none" onclick="window.print()">🖨️ طباعة الاستمارة</button>
-
-<hr style="border:0;border-top:1px solid var(--border);margin:12px 0">
-
-<label>🔔 منبه الرعاية</label>
-<input type="date" id="riayaAnnual" class="input">
-<button class="btn sky" onclick="saveRiayaAnnual()">💾 حفظ منبه البيان السنوي للرعاية</button>
-<p id="riayaAnnualMsg" style="font-size:12px;margin-top:6px"></p>
-
-<div style="margin-top:10px">
-<a class="btn blue" href="https://spa.gov.iq/umbrella/search.aspx" target="_blank" style="display:block;text-align:center;text-decoration:none">🌐 فتح موقع الرعاية الرسمي</a>
-</div>
-</div>
-
-<div class="card">
-<h2>⚡ تسهيلات</h2>
-<div class="grid2">
-<button class="btn green" style="background:var(--bg);color:var(--text);border:1px solid var(--border)" onclick="window.open('https://ur.gov.iq/','_blank')">🏛️ بوابة أور</button>
-<button class="btn green" style="background:var(--bg);color:var(--text);border:1px solid var(--border)" onclick="toggleDark()">🌙 / ☀️ ليلي</button>
-</div>
-</div>
-
-</div>
 
 <script>
-function updateMaps(){
-let g=gov.value;
-document.getElementById('mapRetire').src=`https://www.google.com/maps?q=دائرة+التقاعد+${encodeURIComponent(g)}&z=13&output=embed`;
-document.getElementById('mapRiaya').src=`https://www.google.com/maps?q=منافذ+الكي+كارد+${encodeURIComponent(g)}&z=13&output=embed`;
+
+function searchServices() {
+
+  const input = document.getElementById("searchInput");
+  const searchText = input.value.toLowerCase().trim();
+
+  const cards = document.querySelectorAll(".service-card");
+  const noResults = document.getElementById("noResults");
+
+  let found = false;
+
+  cards.forEach(function(card) {
+
+    const text = card.innerText.toLowerCase();
+
+    if (text.includes(searchText)) {
+
+      card.classList.remove("hidden");
+      found = true;
+
+    } else {
+
+      card.classList.add("hidden");
+
+    }
+
+  });
+
+  if (searchText !== "" && !found) {
+    noResults.style.display = "block";
+  } else {
+    noResults.style.display = "none";
+  }
 }
-function wadini(type){
-let g=gov.value;let query=type==='كي كارد'?`منافذ+الكي+كارد+${g}`:`دائرة+التقاعد+${g}`;
-if(!navigator.geolocation){window.open(`https://www.google.com/maps/dir/?api=1&destination=${query}`,'_blank');return}
-navigator.geolocation.getCurrentPosition(p=>{
-window.open(`https://www.google.com/maps/dir/?api=1&origin=${p.coords.latitude},${p.coords.longitude}&destination=${query}&travelmode=driving`,'_blank');
-},()=>{window.open(`https://www.google.com/maps/dir/?api=1&destination=${query}`,'_blank')});
+
+
+function clearSearch() {
+
+  document.getElementById("searchInput").value = "";
+
+  const cards = document.querySelectorAll(".service-card");
+
+  cards.forEach(function(card) {
+    card.classList.remove("hidden");
+  });
+
+  document.getElementById("noResults").style.display = "none";
 }
-function searchRiaya(){
-let name=riayaName.value.trim();
-if(!name){riayaRes.textContent='⚠️ اكتب اسمك';return}
-riayaRes.innerHTML=`✅ جاري البحث عن <b>${name}</b>...<br>سيتم فتح الموقع الرسمي للتأكد<br><small>اذا لم يفتح اضغط هنا: <a href="https://spa.gov.iq/umbrella/search.aspx" target="_blank">spa.gov.iq</a></small>`;
-setTimeout(()=>window.open(`https://spa.gov.iq/umbrella/search.aspx`,'_blank'),800);
-localStorage.setItem('riayaName',name);
+
+
+function saveAnnualDate() {
+
+  const dateInput = document.getElementById("annualDate");
+  const message = document.getElementById("annualMessage");
+
+  if (!dateInput.value) {
+
+    message.textContent = "⚠️ يرجى اختيار التاريخ أولاً.";
+    message.style.color = "#dc2626";
+    return;
+
+  }
+
+  localStorage.setItem("annualDate", dateInput.value);
+
+  message.textContent =
+    "✅ تم حفظ تاريخ البيان السنوي بنجاح.";
+
+  message.style.color = "#15803d";
+
+  calculateAnnualReminder();
 }
-function savePayDate(){
-let d=lastPay.value;if(!d)return;localStorage.setItem('lastPay',d);payMsg.textContent='✅ تم حفظ تاريخ آخر دفعة: '+d;
+
+
+function calculateAnnualReminder() {
+
+  const savedDate = localStorage.getItem("annualDate");
+
+  if (!savedDate) return;
+
+  const dateInput = document.getElementById("annualDate");
+  const message = document.getElementById("annualMessage");
+
+  dateInput.value = savedDate;
+
+  const parts = savedDate.split("-");
+
+  const saved = new Date(
+    Number(parts[0]),
+    Number(parts[1]) - 1,
+    Number(parts[2])
+  );
+
+  const today = new Date();
+
+  today.setHours(0, 0, 0, 0);
+
+  const nextDate = new Date(saved);
+
+  nextDate.setFullYear(nextDate.getFullYear() + 1);
+
+  const remainingDays = Math.ceil(
+    (nextDate - today) / (1000 * 60 * 60 * 24)
+  );
+
+  if (remainingDays <= 0) {
+
+    message.textContent =
+      "⚠️ حان موعد البيان السنوي أو تجاوز الموعد. يرجى فتح الخدمة الرسمية.";
+
+    message.style.color = "#dc2626";
+
+  } else if (remainingDays <= 30) {
+
+    message.textContent =
+      "🔔 اقترب موعد البيان السنوي. المتبقي تقريباً " +
+      remainingDays +
+      " يوم.";
+
+    message.style.color = "#ea580c";
+
+  } else {
+
+    message.textContent =
+      "✅ المتبقي تقريباً " +
+      remainingDays +
+      " يوم على الموعد السنوي القادم.";
+
+    message.style.color = "#15803d";
+
+  }
 }
-function generateForm(){
-let name=fullName.value,mother=motherName.value;
-if(!name){alert('اكتب اسمك');return}
-let html=`<b>استمارة تحديث الرعاية الاجتماعية</b><br>الاسم: ${name}<br>اسم الأم: ${mother||'---'}<br>المحافظة: ${gov.value}<br>التاريخ: ${new Date().toLocaleDateString('ar-IQ')}<br><br>أتعهد بصحة المعلومات أعلاه...<br><br>التوقيع: ___________`;
-document.getElementById('formPreview').innerHTML=html;
-document.getElementById('formPreview').style.display='block';
-document.getElementById('printBtn').style.display='block';
+
+
+function loadAnnualDate() {
+
+  calculateAnnualReminder();
+
 }
-function saveRiayaAnnual(){
-let d=riayaAnnual.value;if(!d)return;localStorage.setItem('riayaAnnual',d);calcRiayaAnnual();
-}
-function calcRiayaAnnual(){
-let d=localStorage.getItem('riayaAnnual');if(!d)return;riayaAnnual.value=d;
-let saved=new Date(d),today=new Date();today.setHours(0,0,0,0);let next=new Date(saved);next.setFullYear(next.getFullYear()+1);
-let diff=Math.ceil((next-today)/86400000);
-let msg=document.getElementById('riayaAnnualMsg');
-if(diff<=0)msg.textContent='⚠️ حان موعد تحديث بيان الرعاية!';else msg.textContent=`✅ متبقي ${diff} يوم لبيان الرعاية`;
-}
-function toggleDark(){document.body.classList.toggle('dark');localStorage.setItem('dark',document.body.classList.contains('dark'))}
-if(localStorage.getItem('dark')=='true')document.body.classList.add('dark');
-calcRiayaAnnual();
-let lp=localStorage.getItem('lastPay');if(lp){lastPay.value=lp;payMsg.textContent='آخر دفعة محفوظة: '+lp}
-if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js?v=v8.1')}
+
+
+loadAnnualDate();
+
 </script>
+
 </body>
 </html>
